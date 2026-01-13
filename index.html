@@ -12,17 +12,12 @@
     <title>MathRacer</title>
 </head>
 <body>
-    <!--Put title text/image at the header with how to play/instruction text-->
-    <!--GAME CONTENT BEGIN-->
-    <!--2 Player icons + name input + submit button (All must have common class for deletion)-->
-    <!--Game content is ONLY generated thru DOM manipulation-->
-    <!--GAME CONTENT END-->
     <header>
         <img src="./assets/logo.png" alt="MathRacer logo" height="200rem">
-        <button type="button" class="tutorial">How to play?</button>
+        <button type="button" class="tutorial-button">How to play?</button>
         <h1 class="instruction">Input player names!</h1>
     </header>
-    <div class="content">
+    <section class="content">
         <div class="initial">
             <div class="player one">
                 <svg class="player one icon" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem">
@@ -38,6 +33,20 @@
             </div>
             <button class="submit-name">Let's Play!</button>
         </div>
-    </div>
+    </section>
+    <section class="tutorial hidden">
+        <h1 class="tutorial title">How to play MathRacer?</h1>
+        <ol>
+            <li class="tutorial text">Each player inputs their name</li>
+            <li class="tutorial text">Player 1 (Blue) starts first</li>
+            <li class="tutorial text">10 simple maths questions have to be answered as fast as possible</li>
+            <li class="tutorial text">The answer can be inputted by using your keyboard or the on-screen numpad</li>
+            <li class="tutorial text">Player 1's score and time taken will be recorded</li>
+            <li class="tutorial text">Player 2 (Red) will answer another 10 questions</li>
+            <li class="tutorial text">The winner will be determined based on the score</li>
+            <li class="tutorial text">If the scores are identical, winner will be decided by time taken!</li>
+        </ol>
+        <button class="close-tutorial" type="button">Close Tutorial</button>
+    </section>
 </body>
 </html>

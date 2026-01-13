@@ -1,6 +1,6 @@
 /*
 GAME MANAGER (IIFE, assign to const during testing)
-method for randomly generating question (FORMAT: x (operator) y = ?)
+method for randomly generating question (FORMAT: x (+ or -) y = ?)
 getStartTime method that runs performance.now()
 getEndTime method that runs performance.now()
 calcRoundTime that takes endTime - startTime
@@ -26,3 +26,24 @@ Repeat for next player...
 Once both rounds done, results screen shows winner and score
 event listener for button to play again
 */
+const game = (function () {
+    const displayManager = (function () {
+
+
+        //event listeners for initial + tutorial buttons
+        let tutorialBtn = document.querySelector('.tutorial-button')
+        let tutorial = document.querySelector('.tutorial')
+        let initial = document.querySelector('.initial')
+        tutorialBtn.addEventListener('click', () => {
+            initial.classList.add('hidden')
+            tutorialBtn.classList.add('hidden')
+            tutorial.classList.remove('hidden')
+        })
+        let tutorialCloseBtn = document.querySelector('.close-tutorial')
+        tutorialCloseBtn.addEventListener('click', () => {
+            initial.classList.remove('hidden')
+            tutorialBtn.classList.remove('hidden')
+            tutorial.classList.add('hidden')
+        })
+    })();
+})();

@@ -53,6 +53,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 200;
 }
 
+.hidden {
+    display: none !important;
+}
+
 body {
     background-color: rgb(110, 180, 255);
 }
@@ -66,7 +70,7 @@ header {
     background-color: rgb(19, 81, 148)
 }
 
-.tutorial {
+.tutorial-button {
     font-family: 'Inter', sans-serif;
     font-weight: 200;
     font-size: 3rem;
@@ -75,7 +79,7 @@ header {
     border-radius: 2rem;
 }
 
-.tutorial:hover {
+.tutorial-button:hover {
     background-color: rgb(241, 241, 241);
 }
 
@@ -147,5 +151,37 @@ header {
 }
 
 .submit-name:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.tutorial {
+    background-color: rgb(19, 81, 148);
+    color: white;
+    margin: 1rem;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+}
+
+.tutorial.title {
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.tutorial.text {
+    font-size: 1.5rem;
+    margin-bottom: -1rem;
+}
+
+.close-tutorial {
+    padding: 1rem 2.5rem;
+    border-radius: 2rem;
+    border: 0.5rem solid black;
+    font-size: 2rem;
+    display: block;
+    margin: 2rem auto;
+    background-color: rgb(187, 187, 187);
+}
+
+.close-tutorial:hover {
     background-color: rgb(241, 241, 241);
 }
