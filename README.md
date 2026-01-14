@@ -1,4 +1,4 @@
-# template-repo
+# MathRacer
 Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where two players compete to complete 10 simple maths questions in the shortest time possible!
 
 Live demo link: https://j0e-quan.github.io/mathracer/
