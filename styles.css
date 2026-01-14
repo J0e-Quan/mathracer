@@ -204,6 +204,7 @@ header {
     grid-template-columns: repeat(3, 8rem);
     grid-template-rows: repeat(4, 8rem);
     justify-self: center;
+    direction: rtl; 
 }
 
 .numpadBtn {
@@ -220,15 +221,16 @@ header {
 .numpadBtn-icon {
     width: 7.5rem;
     height: 7.5rem;
+    pointer-events: none;
 }
 
 .questionBox {
     grid-column: 2;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     background-color: rgb(241, 241, 241);
     border-radius: 2rem;
     border: 1rem solid rgb(187, 187, 187);
-    font-size: 5rem;
+    font-size: 4.5rem;
 }
 
 .currentPlayerInfo {
@@ -241,7 +243,6 @@ header {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr 4fr;
-    height: fit-content;
 }
 
 .currentPlayerNameText {
@@ -262,4 +263,12 @@ header {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     place-items: center;
+}
+
+.correct {
+    fill: rgb(61, 255, 100);
+}
+
+.wrong {
+    fill: rgb(255, 0, 0);
 }

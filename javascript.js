@@ -26,13 +26,15 @@ const game = (function () {
         let startTime = 0
         let endTime = 0
         let isPlayer1Turn = true
+        let answer
+        let question = 0
         function toggleIsPlayer1Turn() {
             isPlayer1Turn = !isPlayer1Turn
         }
         function incrementScore() {
             currentScore = currentScore++
         }
-        function getStartTine() {
+        function getStartTime() {
             startTime = performance.now()
         }
         function getEndTime() {
@@ -41,6 +43,42 @@ const game = (function () {
         function calcCurrentTime() {
             //performance.now() gives time in ms, this rounds and converts output to s
             timeTaken = (Math.floor((endTime - startTime)/1000))
+        }
+        function newQuestion() {
+            question = question++
+            if (question <= 10) {
+                let num1 = Math.floor(Math.random()*99)+1
+                let num2 = Math.floor(Math.random()*99)+1
+                let operator
+                let operatorChoice = Math.floor(Math.random()*2)
+                if (operatorChoice === 0) {
+                    operator = '+'
+                } else if (operatorChoice === 1) {
+                    operator = '-'
+                }
+                if (operator === '-' && num2 > num1) {
+                    newQuestion()
+                } else {
+                    determineAnswer(num1, operator, num2)
+                    displayManager.showQuestion(num1, operator, num2)
+                }
+            } else {
+                //show player result
+            }
+        }
+        function determineAnswer(num1, operator, num2) {
+            if (operator === '+') {
+                answer = num1 + num2
+            } else if (operator === '-') {
+                answer = num1 - num2
+            }
+        }
+        function checkAnswer(inputAnswer) {
+            if (answer === Number(inputAnswer)) {
+                displayManager.updateScoreIcon(question, true)
+            } else if (answer !== Number(inputAnswer)) {
+                displayManager.updateScoreIcon(question, false)
+            }
         }
         return {
             get currentScore() {
@@ -52,7 +90,11 @@ const game = (function () {
             get isPlayer1Turn() {
                 return isPlayer1Turn
             },
-            toggleIsPlayer1Turn
+            toggleIsPlayer1Turn,
+            newQuestion,
+            getStartTime,
+            getEndTime,
+            checkAnswer
         }
     })();
 
@@ -117,7 +159,7 @@ const game = (function () {
             },
             get player2() {
                 return player2
-            }
+            },
         }
     })();
 
@@ -132,19 +174,21 @@ const game = (function () {
             let numpad = document.createElement('div')
             numpad.classList.add('numpad')
             let iconArr = [
-                './assets/seven.png', './assets/eight.png', './assets/nine.png',
-                './assets/four.png', './assets/five.png', './assets/six.png',
-                './assets/one.png', './assets/two.png', './assets/three.png',
-                './assets/backspace.png', './assets/zero.png', './assets/submit.png'
+                './assets/nine.png', './assets/eight.png', './assets/seven.png',
+                './assets/six.png', './assets/five.png', './assets/four.png',
+                './assets/three.png', './assets/two.png', './assets/one.png',
+                './assets/submit.png', './assets/zero.png', './assets/backspace.png'
             ]
             iconArr.forEach((src, index) => {
                 let numpadBtn = document.createElement('button')
-                if (index === 9) {
+                if (index === 11) {
                     numpadBtn.dataset.action = 'backspace'
-                } else if (index === 11) {
+                } else if (index === 9) {
                     numpadBtn.dataset.action = 'submit'
+                } else if (index === 10) {
+                    numpadBtn.dataset.action = '0'
                 } else {
-                    numpadBtn.dataset.number = (index+1)
+                    numpadBtn.dataset.action = (9 - index)
                 }
                 let icon = document.createElement('img')
                 icon.src = src
@@ -173,7 +217,6 @@ const game = (function () {
             currentPlayerIcon.innerHTML =   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
             if (gameManager.isPlayer1Turn === true) {
                 currentPlayerIcon.classList.add('one')
-                console.log(currentPlayerIcon.classList)
             } else if (gameManager.isPlayer1Turn === false) {
                 currentPlayerIcon.classList.add('two')
             }
@@ -184,12 +227,15 @@ const game = (function () {
             for (i = 0 ; i < 10; i++) {
                 let scoreIcon = document.createElement('div')
                 scoreIcon.classList.add('scoreIcon')
-                scoreIcon.innerHTML = '<svg width="100" height="100"><circle cx="50" cy="50" r="35" stroke="rgb(187, 187, 187)" stroke-width="5" fill="#000000"></circle></svg>'
+                scoreIcon.innerHTML = '<svg width="100" height="100"><circle cx="50" cy="50" r="35" stroke="rgb(187, 187, 187)" stroke-width="5"></circle></svg>'
                 scoreGrid.appendChild(scoreIcon)
             }
             currentPlayerInfo.appendChild(scoreGrid)
             content.appendChild(game)
+            detectNumpadInput()
             updateInstruction('Input the answer as fast as you can!')
+            gameManager.getStartTime()
+            gameManager.newQuestion()
         }
 
         let instruction = document.querySelector('.instruction')
@@ -198,7 +244,23 @@ const game = (function () {
         }
 
         function updateScoreIcon(question, result) {
+            if (question <= 10) {
+                let scoreIconList = document.querySelectorAll('.scoreIcon')
+                let targetScoreIcon = scoreIconList[question]         
+                if (result === true) {
+                    targetScoreIcon.classList.add('correct')
+                } else if (result === false) {
+                    targetScoreIcon.classList.add('wrong')
+                }
+            }
+            gameManager.newQuestion()
+        }
 
+        let questionLength
+        function showQuestion(num1, operator, num2) {
+            let questionBox = document.querySelector('.questionBox')
+            questionBox.textContent = num1 + ' ' + operator + ' ' + num2 + '= '
+            questionLength = questionBox.textContent.length
         }
 
         //event listeners for initial + tutorial buttons
@@ -217,7 +279,29 @@ const game = (function () {
             tutorial.classList.add('hidden')
         })
 
-        return {showGame, updateInstruction, updateScoreIcon}
+        function detectNumpadInput() {
+            let numpad = document.querySelector('.numpad')
+            let questionBox = document.querySelector('.questionBox')
+            numpad.addEventListener('click', (btn) => {
+                let targetBtn = btn.target
+                console.log(targetBtn)
+                if (targetBtn.dataset.action === 'submit') {
+                    let inputAnswer = questionBox.textContent.slice(questionLength)
+                    gameManager.checkAnswer(inputAnswer)
+                } else if (targetBtn.dataset.action === 'backspace') {
+                    if (questionBox.textContent.length > questionLength) {
+                        questionBox.textContent = questionBox.textContent.slice(0, -1)
+                        console.log('can backspace!!')
+                    } else {
+                        console.log('cannot backspace')
+                    }
+                } else {
+                    questionBox.textContent = questionBox.textContent + targetBtn.dataset.action
+                }
+            })
+        }
+
+        return {showGame, updateInstruction, updateScoreIcon, showQuestion}
     })();
 
     return {gameManager, playerManager, displayManager}
