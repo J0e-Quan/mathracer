@@ -21,7 +21,22 @@ event listener for button to play again
 */
 const game = (function () {
     const gameManager = (function() {
-
+        let currentScore = 0
+        let currentTime = 0
+        let startTime = 0
+        let endTime = 0
+        function incrementScore() {
+            currentScore = currentScore++
+        }
+        function getStartTine() {
+            startTime = performance.now()
+        }
+        function getEndTime() {
+            endTime = performance.now()
+        }
+        function calcCurrentTime() {
+            currentTime = endTime - startTime
+            
     })();
 
 
@@ -93,7 +108,7 @@ const game = (function () {
     const displayManager = (function () {
         function showGame() {
             initial.classList.add('hidden')
-            let content = document.querySelector('content')
+            let content = document.querySelector('.content')
             let game = document.createElement('div')
             game.classList.add('game')
             let numpad = document.createElement('div')
@@ -123,3 +138,4 @@ const game = (function () {
 
     return {gameManager, playerManager, displayManager}
 })();
+
