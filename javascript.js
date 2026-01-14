@@ -125,6 +125,11 @@ const game = (function () {
             content.appendChild(game)
         }
 
+        let instruction = document.querySelector('.instruction')
+        function updateInstruction(inputText) {
+            instruction.textContent = inputText
+        }
+
         //event listeners for initial + tutorial buttons
         let tutorialBtn = document.querySelector('.tutorial-button')
         let tutorial = document.querySelector('.tutorial')
@@ -146,5 +151,6 @@ const game = (function () {
 
     return {gameManager, playerManager, displayManager}
 })();
+
 
 
