@@ -45,7 +45,6 @@ const game = (function () {
             timeTaken = (Math.floor((endTime - startTime)/1000))
         }
         function newQuestion() {
-            question = question++
             if (question <= 10) {
                 let num1 = Math.floor(Math.random()*99)+1
                 let num2 = Math.floor(Math.random()*99)+1
@@ -62,9 +61,7 @@ const game = (function () {
                     determineAnswer(num1, operator, num2)
                     displayManager.showQuestion(num1, operator, num2)
                 }
-            } else {
-                //show player result
-            }
+            } 
         }
         function determineAnswer(num1, operator, num2) {
             if (operator === '+') {
@@ -75,10 +72,18 @@ const game = (function () {
         }
         function checkAnswer(inputAnswer) {
             if (answer === Number(inputAnswer)) {
+                question++
                 displayManager.updateScoreIcon(question, true)
             } else if (answer !== Number(inputAnswer)) {
+                question++
                 displayManager.updateScoreIcon(question, false)
             }
+        }
+        function endRound() {
+            console.log('game end!!!!!!!!!!!!1')
+            getEndTime()
+            calcCurrentTime()
+            displayManager.showRoundResult(currentScore, timeTaken)
         }
         return {
             get currentScore() {
@@ -94,7 +99,8 @@ const game = (function () {
             newQuestion,
             getStartTime,
             getEndTime,
-            checkAnswer
+            checkAnswer,
+            endRound
         }
     })();
 
@@ -245,15 +251,18 @@ const game = (function () {
 
         function updateScoreIcon(question, result) {
             if (question <= 10) {
+                console.log(question)
                 let scoreIconList = document.querySelectorAll('.scoreIcon')
-                let targetScoreIcon = scoreIconList[question]         
+                let targetScoreIcon = scoreIconList[(question-1)]         
                 if (result === true) {
                     targetScoreIcon.classList.add('correct')
                 } else if (result === false) {
                     targetScoreIcon.classList.add('wrong')
                 }
+                gameManager.newQuestion()
+            } else if (question > 10) {
+                gameManager.endRound()
             }
-            gameManager.newQuestion()
         }
 
         let questionLength
@@ -284,16 +293,12 @@ const game = (function () {
             let questionBox = document.querySelector('.questionBox')
             numpad.addEventListener('click', (btn) => {
                 let targetBtn = btn.target
-                console.log(targetBtn)
                 if (targetBtn.dataset.action === 'submit') {
                     let inputAnswer = questionBox.textContent.slice(questionLength)
                     gameManager.checkAnswer(inputAnswer)
                 } else if (targetBtn.dataset.action === 'backspace') {
                     if (questionBox.textContent.length > questionLength) {
                         questionBox.textContent = questionBox.textContent.slice(0, -1)
-                        console.log('can backspace!!')
-                    } else {
-                        console.log('cannot backspace')
                     }
                 } else {
                     questionBox.textContent = questionBox.textContent + targetBtn.dataset.action
