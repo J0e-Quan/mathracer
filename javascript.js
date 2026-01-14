@@ -21,7 +21,30 @@ event listener for button to play again
 */
 const game = (function () {
     const gameManager = (function() {
-
+        let currentScore = 0
+        let timeTaken = 0
+        let startTime = 0
+        let endTime = 0
+        function incrementScore() {
+            currentScore = currentScore++
+        }
+        function getStartTine() {
+            startTime = performance.now()
+        }
+        function getEndTime() {
+            endTime = performance.now()
+        }
+        function calcCurrentTime() {
+            //performance.now() gives time in ms, this rounds and converts output to s
+            timeTaken = (Math.floor((endTime - startTime)/1000))
+        }
+        return {
+            get currentScore() {
+                return currentScore
+            },
+            get timeTaken() {
+                return timeTaken
+            }
     })();
 
 
@@ -92,15 +115,34 @@ const game = (function () {
 
     const displayManager = (function () {
         function showGame() {
-            initial.remove()
-            let content = document.querySelector('content')
+            initial.classList.add('hidden')
+            let content = document.querySelector('.content')
             let game = document.createElement('div')
             game.classList.add('game')
             let numpad = document.createElement('div')
             numpad.classList.add('numpad')
-            game.appendChild(numpad)
-            content.appendChild(game)
-            //appendchild game isn't working for some reason :(
+            let iconArr = [
+    
+            ]
+            iconArr.forEach(src, index) {
+                let numpadBtn = document.createElement('button')
+                if (index === 9) {
+                    numpadBtn.dataset.action = 'backspace'
+                } else if (index === 11) {
+                    numpadBtn.dataset.action = 'submit'
+                } else {
+                    numpadBtn.dataset.number = (index+1)
+                }
+                let icon = document.createElement('img')
+                icon.src = src
+                numpadBtn.appendChild(icon)
+                numpad.appendChild(numpadBtn)
+            }
+        }
+
+        let instruction = document.querySelector('.instruction')
+        function updateInstruction(inputText) {
+            instruction.textContent = inputText
         }
 
         //event listeners for initial + tutorial buttons
@@ -124,3 +166,7 @@ const game = (function () {
 
     return {gameManager, playerManager, displayManager}
 })();
+
+
+
+
