@@ -179,6 +179,15 @@ const game = (function () {
             }
             currentPlayerInfo.appendChild(currentPlayerIcon)
             game.appendChild(currentPlayerInfo)
+            let scoreGrid = document.createElement('div')
+            scoreGrid.classList.add('scoreGrid')
+            for (i = 0 ; i < 10; i++) {
+                let scoreIcon = document.createElement('div')
+                scoreIcon.classList.add('scoreIcon')
+                scoreIcon.innerHTML = '<svg width="100" height="100"><circle cx="50" cy="50" r="35" stroke="rgb(187, 187, 187)" stroke-width="5" fill="#000000"></circle></svg>'
+                scoreGrid.appendChild(scoreIcon)
+            }
+            currentPlayerInfo.appendChild(scoreGrid)
             content.appendChild(game)
             updateInstruction('Input the answer as fast as you can!')
         }
@@ -186,6 +195,10 @@ const game = (function () {
         let instruction = document.querySelector('.instruction')
         function updateInstruction(inputText) {
             instruction.textContent = inputText
+        }
+
+        function updateScoreIcon(question, result) {
+
         }
 
         //event listeners for initial + tutorial buttons
@@ -204,7 +217,7 @@ const game = (function () {
             tutorial.classList.add('hidden')
         })
 
-        return {showGame, updateInstruction}
+        return {showGame, updateInstruction, updateScoreIcon}
     })();
 
     return {gameManager, playerManager, displayManager}

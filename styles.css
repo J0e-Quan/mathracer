@@ -251,5 +251,15 @@ header {
 }
 
 .info.icon {
+    grid-column: 1;
     grid-row: 2;
+}
+
+.scoreGrid {
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
 }
