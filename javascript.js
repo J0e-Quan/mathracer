@@ -22,7 +22,7 @@ event listener for button to play again
 const game = (function () {
     const gameManager = (function() {
         let currentScore = 0
-        let currentTime = 0
+        let timeTaken = 0
         let startTime = 0
         let endTime = 0
         function incrementScore() {
@@ -35,8 +35,16 @@ const game = (function () {
             endTime = performance.now()
         }
         function calcCurrentTime() {
-            currentTime = endTime - startTime
-            
+            //performance.now() gives time in ms, this rounds and converts output to s
+            timeTaken = (Math.floor((endTime - startTime)/1000))
+        }
+        return {
+            get currentScore() {
+                return currentScore
+            },
+            get timeTaken() {
+                return timeTaken
+            }
     })();
 
 
@@ -138,4 +146,5 @@ const game = (function () {
 
     return {gameManager, playerManager, displayManager}
 })();
+
 
