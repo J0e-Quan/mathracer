@@ -273,6 +273,45 @@ header {
     fill: rgb(255, 0, 0);
 }
 
+.transitionCard {
+    margin: 1rem 2rem;
+    padding: 1rem 2rem;
+    background-color: rgb(19, 81, 148);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.transitionTitle {
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.transitionButton {
+    padding: 1rem 2.5rem;
+    border-radius: 2rem;
+    border: 0.5rem solid black;
+    font-size: 2rem;
+    display: block;
+    background-color: rgb(187, 187, 187);
+}
+
+.transitionButton:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+
+
+
+
+
+
+
+
+
+
 .resultsCard {
     background-color: rgb(19, 81, 148);
     display: flex;
@@ -287,8 +326,26 @@ header {
 .playerResults {
     padding: 1rem 2rem;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
     background-color: rgb(187, 187, 187);
     border-radius: 2rem;
+}
+
+.playerIcon {
+    grid-row: 1/4;
+}
+
+.playerName {
+    grid-column: 2;
+}
+
+.playerScore {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.playerTime {
+    grid-column: 2;
+    grid-row: 3;
 }

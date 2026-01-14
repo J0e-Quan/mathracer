@@ -9,9 +9,10 @@ const game = (function () {
         let question = 0
         function toggleIsPlayer1Turn() {
             isPlayer1Turn = !isPlayer1Turn
+            question = 0
         }
         function incrementScore() {
-            currentScore = currentScore++
+            currentScore++
         }
         function getStartTime() {
             startTime = performance.now()
@@ -52,6 +53,7 @@ const game = (function () {
         function checkAnswer(inputAnswer) {
             if (answer === Number(inputAnswer)) {
                 question++
+                incrementScore()
                 displayManager.updateScoreIcon(question, true)
             } else if (answer !== Number(inputAnswer)) {
                 question++
@@ -59,17 +61,17 @@ const game = (function () {
             }
         }
         function endRound() {
-            console.log('game end!!!!!!!!!!!!1')
             getEndTime()
             calcCurrentTime()
             if (isPlayer1Turn === true) {
                 playerManager.player1.roundScore = currentScore
                 playerManager.player1.roundTime = timeTaken
+                console.log(playerManager.player1.roundScore)
             } else if (isPlayer1Turn === false) {
                 playerManager.player2.roundScore = currentScore
                 playerManager.player2.roundTime = timeTaken
             }
-            displayManager.showRoundResult(currentScore, timeTaken)
+            displayManager.transition()
         }
         return {
             get currentScore() {
@@ -93,7 +95,7 @@ const game = (function () {
 
     const playerManager = (function() {
         let nameBtn = document.querySelector('.submit-name')
-        nameBtn.addEventListener('click', () =>{
+        nameBtn.addEventListener('click', () => {
             let player1NameInput = document.querySelector('.one.name')
             let player2NameInput = document.querySelector('.two.name')
             player1name = player1NameInput.value
@@ -112,8 +114,6 @@ const game = (function () {
         function createPlayer (playerName) {
             let score = 0
             const name = playerName
-            let roundScore = 0
-            let roundTime = 0
 
             function incrementScore() {
                 score = score++
@@ -121,19 +121,19 @@ const game = (function () {
 
             return {
                 get roundScore() {
-                    return roundScore
+                    return this._roundScore
                 },
                 get roundTime() {
-                    return roundTime
+                    return this._roundTime
                 },
                 set roundScore(currentScore) {
-                    roundScore = currentScore
+                    this._roundScore = currentScore
                 },
                 set roundTime(timeTaken) {
-                    roundTime = timeTaken
+                    this._roundTime = timeTaken
                 },
                 get score() {
-                    return score
+                    return this._score
                 },
                 name,
                 incrementScore
@@ -160,9 +160,9 @@ const game = (function () {
         function hideInitial() {
             tutorialBtn.classList.add('hidden')
             initial.classList.add('hidden')
-            showGame()
+            newGame()
         }
-        function showGame() {
+        function newGame() {
             let content = document.querySelector('.content')
             let game = document.createElement('div')
             game.classList.add('game')
@@ -233,31 +233,75 @@ const game = (function () {
             gameManager.newQuestion()
         }
 
-        function hideGame() {
+        function removeGame() {
             let game = document.querySelector('.game')
-            game.classList.add('hidden')
+            game.remove()
         }
 
-        function showRoundResult(score, time) {
-            hideGame()
+        function transition() {
+            removeGame()
+            let content = document.querySelector('.content')
+            let transitionCard = document.createElement('div')      
+            transitionCard.classList.add('transitionCard')  
+            let transitionTitle = document.createElement('h2')
+            transitionTitle.classList.add('transitionTitle')
+            transitionTitle.textContent = "Time for " + playerManager.player2.name + " to play! Press the button below when you're ready!"
+            transitionCard.appendChild(transitionTitle)
+            let transitionPlayerIcon = document.createElement('div')
+            transitionPlayerIcon.classList.add('player', 'two', 'icon')
+            transitionPlayerIcon.innerHTML =   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
+            transitionCard.appendChild(transitionPlayerIcon)     
+            let transitionButton = document.createElement('button')
+            transitionButton.type = 'button'
+            transitionButton.classList.add('transitionButton')  
+            transitionButton.textContent = "Let's Play!"
+            transitionCard.appendChild(transitionButton)
+            content.appendChild(transitionCard) 
+            updateInstruction('Waiting for the next player...')  
+            detectNextRound()
+        }
+
+        function removeTransition() {
+            let transitionCard = document.querySelector('.transitionCard')
+            transitionCard.remove()
+        }
+
+        function showResult() {
+            removeGame()
             let content = document.querySelector('.content')
             let resultsCard = document.createElement('div')
             resultsCard.classList.add('resultsCard')
-            let playerResults = document.createElement('div')
-            playerResults.classList.add('playerResults')
-            let playerName = document.createElement('h2')
-            playerName.classList.add('results', 'name')
-            playerName.textContent = playerManager.player1.name
-            playerResults.appendChild(playerName)
-            let playerIcon = document.createElement('div')
-            playerIcon.classList.add('player', 'result', 'icon')
-            playerIcon.innerHTML =   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
-            playerIcon.classList.add('one')
-            playerResults.appendChild(playerIcon)
-            let playerScore = document.createElement('h3')
-            playerScore.classList.add('playerScore')
-            playerScore.textContent = playerManager.player1.roundScore
-            playerResults.appendChild(playerScore)
+            for (i = 0; i < 2; i++) {
+                let showPlayer1 = true
+                let playerResults = document.createElement('div')
+                playerResults.classList.add('playerResults')
+                let playerName = document.createElement('h2')
+                playerName.classList.add('results', 'name')
+                playerResults.appendChild(playerName)
+                let playerIcon = document.createElement('div')
+                playerIcon.classList.add('player', 'result', 'icon')
+                playerIcon.innerHTML =   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
+                playerResults.appendChild(playerIcon)
+                let playerScore = document.createElement('h3')
+                playerScore.classList.add('playerScore')
+                playerResults.appendChild(playerScore)
+                let playerTime = document.createElement('h3')
+                playerTime.classList.add('playerTime')
+                playerResults.appendChild(playerTime)
+                if (showPlayer1 === true) {
+                    playerName.textContent = playerManager.player1.name
+                    playerIcon.classList.add('one')
+                    playerScore.textContent = playerManager.player1.roundScore
+                    playerTime.textContent = playerManager.player1.roundTime
+                    showPlayer1 = !showPlayer1
+                } else if (showPlayer1 === false) {
+                    playerName.textContent = playerManager.player2.name
+                    playerIcon.classList.add('two')
+                    playerScore.textContent = playerManager.player2.roundScore
+                    playerTime.textContent = playerManager.player2.roundTime                
+                }
+                resultsCard.appendChild(playerResults)
+            }
             content.appendChild(resultsCard)
         }
 
@@ -267,7 +311,7 @@ const game = (function () {
         }
 
         function updateScoreIcon(question, result) {
-            if (question <= 10) {
+            if (question < 10) {
                 console.log(question)
                 let scoreIconList = document.querySelectorAll('.scoreIcon')
                 let targetScoreIcon = scoreIconList[(question-1)]         
@@ -277,7 +321,7 @@ const game = (function () {
                     targetScoreIcon.classList.add('wrong')
                 }
                 gameManager.newQuestion()
-            } else if (question > 10) {
+            } else if (question >= 10) {
                 gameManager.endRound()
             }
         }
@@ -323,7 +367,16 @@ const game = (function () {
             })
         }
 
-        return {hideInitial, showGame, showRoundResult, updateInstruction, updateScoreIcon, showQuestion}
+        function detectNextRound() {
+            let transitionButton = document.querySelector('.transitionButton')
+            transitionButton.addEventListener('click', () => {
+                removeTransition()
+                gameManager.toggleIsPlayer1Turn()
+                newGame()
+            })
+        }
+
+        return {hideInitial, newGame, transition, showResult, updateInstruction, updateScoreIcon, showQuestion}
     })();
 
     return {gameManager, playerManager, displayManager}
