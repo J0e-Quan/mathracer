@@ -62,6 +62,13 @@ const game = (function () {
             console.log('game end!!!!!!!!!!!!1')
             getEndTime()
             calcCurrentTime()
+            if (isPlayer1Turn === true) {
+                playerManager.player1.roundScore = currentScore
+                playerManager.player1.roundTime = timeTaken
+            } else if (isPlayer1Turn === false) {
+                playerManager.player2.roundScore = currentScore
+                playerManager.player2.roundTime = timeTaken
+            }
             displayManager.showRoundResult(currentScore, timeTaken)
         }
         return {
@@ -226,6 +233,34 @@ const game = (function () {
             gameManager.newQuestion()
         }
 
+        function hideGame() {
+            let game = document.querySelector('.game')
+            game.classList.add('hidden')
+        }
+
+        function showRoundResult(score, time) {
+            hideGame()
+            let content = document.querySelector('.content')
+            let resultsCard = document.createElement('div')
+            resultsCard.classList.add('resultsCard')
+            let playerResults = document.createElement('div')
+            playerResults.classList.add('playerResults')
+            let playerName = document.createElement('h2')
+            playerName.classList.add('results', 'name')
+            playerName.textContent = playerManager.player1.name
+            playerResults.appendChild(playerName)
+            let playerIcon = document.createElement('div')
+            playerIcon.classList.add('player', 'result', 'icon')
+            playerIcon.innerHTML =   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
+            playerIcon.classList.add('one')
+            playerResults.appendChild(playerIcon)
+            let playerScore = document.createElement('h3')
+            playerScore.classList.add('playerScore')
+            playerScore.textContent = playerManager.player1.roundScore
+            playerResults.appendChild(playerScore)
+            content.appendChild(resultsCard)
+        }
+
         let instruction = document.querySelector('.instruction')
         function updateInstruction(inputText) {
             instruction.textContent = inputText
@@ -288,7 +323,7 @@ const game = (function () {
             })
         }
 
-        return {showGame, updateInstruction, updateScoreIcon, showQuestion}
+        return {hideInitial, showGame, showRoundResult, updateInstruction, updateScoreIcon, showQuestion}
     })();
 
     return {gameManager, playerManager, displayManager}
