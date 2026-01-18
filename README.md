@@ -26,3 +26,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 ![picture showing a transition screen](./readme-assets/transition.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
 ![picture showing initial game state in a narrow, mobile-like view](./readme-assets/narrow.jpeg)
+
+## Getting started:
+1. clone this repo in your desired folder: `git clone https://github.com/J0e-Quan/mathracer.git`
+2. open index.html in your browser to run the code
