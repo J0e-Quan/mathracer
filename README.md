@@ -8,7 +8,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 
 - HTML for basic page layout
 - CSS for styling elements and use of web fonts (Inter for headings, Urbanist for body text)
-- Flexbox and Grid for arranging elements and making the website somewhat responsive
+- Flexbox and Grid for arranging elements
 - JavaScript for game logic and dynamically creating elements/UI
 - npm and webpack for managing and bundling code modules
 - Git for version control
