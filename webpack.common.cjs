@@ -6,13 +6,14 @@ module.exports = {
   entry: './src/main.js',
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'auto'
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: 'index.html',       
-      inject: 'body',
+      filename: 'index.html',
+      inject: 'body'
     }),
     new CopyPlugin({
       patterns: [{ from: 'src/assets', to: 'assets' }]
