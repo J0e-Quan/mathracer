@@ -1,4 +1,4 @@
-const game = (function () {
+;(function () {
   const gameManager = (function () {
     let currentScore = 0
     let timeTaken = 0
@@ -199,7 +199,7 @@ const game = (function () {
         './assets/submit.png',
         './assets/zero.png',
         './assets/backspace.png'
-      ] 
+      ]
       iconArr.forEach((src, index) => {
         const numpadBtn = document.createElement('button')
         if (index === 11) {
