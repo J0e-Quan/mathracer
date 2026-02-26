@@ -8,6 +8,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
  - CSS for styling elements and use of web fonts (Inter for headings, Urbanist for body text)
  - Flexbox and Grid for arranging elements and making the website somewhat responsive
  - JavaScript for game logic and dynamically creating elements/UI
+ - npm and webpack for managing and bundling code modules
  - Git for version control
 
 ## Key features:
@@ -25,8 +26,10 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 ![picture showing gameplay](./readme-assets/gameplay.jpeg)
 ![picture showing a transition screen](./readme-assets/transition.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
-![picture showing initial game state in a narrow, mobile-like view](./readme-assets/narrow.jpeg)
 
 ## Getting started:
-1. clone this repo in your desired folder: `git clone https://github.com/J0e-Quan/mathracer.git`
-2. open index.html in your browser to run the code
+
+1. clone this repo in your desired folder: `git clone (* HTTPS * URL)`
+2. `npm install` to install any required dependencies
+3. `npm run dev` to activate the dev server (View the project by navigating to the localhost address shown in your terminal.)
+4. `npm run build` will bundle the code into the 'dist' folder
