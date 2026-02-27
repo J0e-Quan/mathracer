@@ -5,7 +5,7 @@ import {
   initGameplayButtons,
   detectNextRound
 } from './input.js'
-import { newQuestion, getStartTime, isPlayer1Turn, endRound } from './game.js'
+import { newQuestion, getStartTime, isPlayer1Turn, endRound, totalQuestions } from './game.js'
 import { determineWinner, player1, player2 } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
@@ -82,7 +82,7 @@ export function newGame() {
   game.appendChild(currentPlayerInfo)
   const scoreGrid = document.createElement('div')
   scoreGrid.classList.add('scoreGrid')
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < totalQuestions; i++) {
     const scoreIcon = document.createElement('div')
     scoreIcon.classList.add('scoreIcon')
     scoreIcon.innerHTML =
@@ -217,7 +217,7 @@ function updateInstruction(inputText) {
 }
 
 export function updateScoreIcon(question, result) {
-  if (question < 10) {
+  if (question < totalQuestions) {
     const scoreIconList = document.querySelectorAll('.scoreIcon')
     const targetScoreIcon = scoreIconList[question - 1]
     if (result === true) {
@@ -226,7 +226,7 @@ export function updateScoreIcon(question, result) {
       targetScoreIcon.classList.add('wrong')
     }
     newQuestion()
-  } else if (question >= 10) {
+  } else if (totalQuestions) {
     endRound()
   }
 }

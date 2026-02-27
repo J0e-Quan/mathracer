@@ -1,11 +1,14 @@
 import { setPlayerNames } from './player.js'
-import { checkAnswer, newRound } from './game.js'
+import { checkAnswer, newRound, updateTotalQuestions } from './game.js'
 import { questionLength, removeTransition, newGame } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
 const tutorial = document.querySelector('.tutorial')
 const initial = document.querySelector('.initial')
 const nameBtn = document.querySelector('.submit-name')
+const questionsToggle = document.querySelector('.questions-toggle')
+const fiveQuestions = document.querySelector('.five.questions')
+const tenQuestions = document.querySelector('.ten.questions')
 let numpad
 let questionBox
 
@@ -21,16 +24,31 @@ function hideTutorial() {
   tutorial.classList.add('hidden')
 }
 
+function toggleQuestions(btn) {
+  const targetBtn = btn.target
+  if (targetBtn.classList.contains('five') && !targetBtn.classList.contains('checked')) {
+    targetBtn.classList.add('checked')
+    tenQuestions.classList.remove('checked')
+    updateTotalQuestions(5)
+  } else if (targetBtn.classList.contains('ten') && !targetBtn.classList.contains('checked')) {
+    targetBtn.classList.add('checked')
+    fiveQuestions.classList.remove('checked')
+    updateTotalQuestions(10)
+  }
+}
+
 export function initInitialButtons() {
   tutorialBtn.addEventListener('click', showTutorial)
   tutorialCloseBtn.addEventListener('click', hideTutorial)
   nameBtn.addEventListener('click', setPlayerNames)
+  questionsToggle.addEventListener('click', toggleQuestions)
 }
 
 export function removeInitialButtons() {
   tutorialBtn.removeEventListener('click', showTutorial)
   tutorialCloseBtn.removeEventListener('click', hideTutorial)
   nameBtn.removeEventListener('click', setPlayerNames)
+  questionsToggle.removeEventListener('click', toggleQuestions)
 }
 
 function getGameplayElements() {

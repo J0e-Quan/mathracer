@@ -4,6 +4,7 @@ let currentScore = 0
 let timeTaken = 0
 let startTime = 0
 let endTime = 0
+export let totalQuestions = 10
 export let isPlayer1Turn = false
 let answer
 let question = 0
@@ -16,6 +17,9 @@ export function newRound() {
 function incrementScore() {
   currentScore++
 }
+export function updateTotalQuestions(num) {
+  totalQuestions = num
+}
 export function getStartTime() {
   startTime = performance.now()
 }
@@ -27,7 +31,7 @@ function calcCurrentTime() {
   timeTaken = Math.floor((endTime - startTime) / 1000)
 }
 export function newQuestion() {
-  if (question <= 10) {
+  if (question <= totalQuestions) {
     const num1 = Math.floor(Math.random() * 99) + 1
     const num2 = Math.floor(Math.random() * 99) + 1
     let operator

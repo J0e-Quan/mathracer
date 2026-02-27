@@ -134,6 +134,7 @@ header {
   grid-row: 2;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .tutorial-button {
@@ -163,7 +164,12 @@ header {
   margin-left: -0.5rem;
 }
 
-.tutorial-button:hover, .submit-name:hover, .questions:hover {
+.questions.checked {
+  background-color: white;
+  padding: 1.5rem 2.5rem;
+}
+
+.tutorial-button:hover, .submit-name:hover, .questions:hover:not(.checked) {
   background-color: rgb(241, 241, 241);
 }
 
