@@ -9,7 +9,6 @@ const nameBtn = document.querySelector('.submit-name')
 let numpad
 let questionBox
 
-
 function showTutorial() {
   initial.classList.add('hidden')
   tutorialBtn.classList.add('hidden')
