@@ -4,7 +4,7 @@ let currentScore = 0
 let timeTaken = 0
 let startTime = 0
 let endTime = 0
-export let isPlayer1Turn = true
+export let isPlayer1Turn = false
 let answer
 let question = 0
 export function newRound() {

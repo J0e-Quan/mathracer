@@ -71,14 +71,19 @@ function detectKeyboardInput(press) {
 
 export function initGameplayButtons() {
   getGameplayElements()
-  numpad.addEventListener('click', detectNumpadInput)
-  window.addEventListener('keydown', detectKeyboardInput)
+  if (numpad != null) {
+    numpad.addEventListener('click', detectNumpadInput)
+    window.addEventListener('keydown', detectKeyboardInput)
+  }
 }
 
 export function removeGameplayButtons() {
   getGameplayElements()
-  numpad.removeEventListener('click', detectNumpadInput)
-  window.removeEventListener('keydown', detectKeyboardInput)
+  if (numpad != null) {
+    numpad.removeEventListener('click', detectNumpadInput)
+    window.removeEventListener('keydown', detectKeyboardInput)
+    console.log('gameplay listeners removed!!!!!!')
+  }
 }
 
 export function detectNextRound() {

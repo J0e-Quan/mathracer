@@ -14,7 +14,7 @@ export function hideInitial() {
   tutorialBtn.classList.add('hidden')
   initial.classList.add('hidden')
   removeInitialButtons()
-  newGame()
+  transition()
 }
 export function newGame() {
   const content = document.querySelector('.content')
@@ -101,21 +101,34 @@ export function newGame() {
 
 function removeGame() {
   const game = document.querySelector('.game')
-  game.remove()
+  if (game != null) {
+    game.remove()
+  }
 }
 
 export function transition() {
+  removeGameplayButtons()
   removeGame()
   const content = document.querySelector('.content')
   const transitionCard = document.createElement('div')
   transitionCard.classList.add('transitionCard')
   const transitionTitle = document.createElement('h2')
   transitionTitle.classList.add('transitionTitle')
+  let currentPlayerName
+  if (isPlayer1Turn === false) {
+    currentPlayerName = player1.name
+  } else if (isPlayer1Turn === true) {
+    currentPlayerName = player2.name
+  }
   transitionTitle.textContent =
-    'Time for ' + player2.name + " to play! Press the button below when you're ready!"
+    'Time for ' + currentPlayerName + " to play! Press the button below when you're ready!"
   transitionCard.appendChild(transitionTitle)
   const transitionPlayerIcon = document.createElement('div')
-  transitionPlayerIcon.classList.add('player', 'two', 'icon')
+  if (isPlayer1Turn === false) {
+    transitionPlayerIcon.classList.add('player', 'one', 'icon')
+  } else if (isPlayer1Turn === true) {
+    transitionPlayerIcon.classList.add('player', 'two', 'icon')
+  }
   transitionPlayerIcon.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
   transitionCard.appendChild(transitionPlayerIcon)
@@ -135,6 +148,7 @@ export function removeTransition() {
 }
 
 export function showResult() {
+  removeGameplayButtons()
   removeGame()
   const content = document.querySelector('.content')
   const resultsCard = document.createElement('div')
