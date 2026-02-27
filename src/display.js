@@ -1,5 +1,4 @@
 import * as icons from './icons.js'
-console.log("Icons: "+icons)
 
 function hideInitial() {
   tutorialBtn.classList.add('hidden')

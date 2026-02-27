@@ -11,4 +11,17 @@ import submitBtn from './assets/submit.png'
 import zeroBtn from './assets/zero.png'
 import backspaceBtn from './assets/backspace.png'
 
-export {nineBtn, eightBtn, sevenBtn, sixBtn, fiveBtn, fourBtn, threeBtn, twoBtn, oneBtn, backspaceBtn, zeroBtn, submitBtn}
+export {
+  nineBtn,
+  eightBtn,
+  sevenBtn,
+  sixBtn,
+  fiveBtn,
+  fourBtn,
+  threeBtn,
+  twoBtn,
+  oneBtn,
+  backspaceBtn,
+  zeroBtn,
+  submitBtn
+}
