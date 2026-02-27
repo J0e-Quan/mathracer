@@ -1,8 +1,14 @@
 import * as icons from './icons.js'
+import { removeInitialButtons } from './input.js'
+import { newQuestion, getStartTime, isPlayer1Turn, newRound, endRound, checkAnswer } from './game.js'
+import { determineWinner, player1, player2 } from './player.js'
+const tutorialBtn = document.querySelector('.tutorial-button')
+const initial = document.querySelector('.initial')
 
-function hideInitial() {
+export function hideInitial() {
   tutorialBtn.classList.add('hidden')
   initial.classList.add('hidden')
+  removeInitialButtons()
   newGame()
 }
 function newGame() {
@@ -53,19 +59,19 @@ function newGame() {
   currentPlayerInfo.classList.add('currentPlayerInfo')
   const currentPlayerNameText = document.createElement('h2')
   currentPlayerNameText.classList.add('currentPlayerNameText')
-  if (gameManager.isPlayer1Turn === true) {
-    currentPlayerNameText.textContent = "It's " + playerManager.player1.name + "'s turn!"
-  } else if (gameManager.isPlayer1Turn === false) {
-    currentPlayerNameText.textContent = "It's " + playerManager.player2.name + "'s turn!"
+  if (isPlayer1Turn === true) {
+    currentPlayerNameText.textContent = "It's " + player1.name + "'s turn!"
+  } else if (isPlayer1Turn === false) {
+    currentPlayerNameText.textContent = "It's " + player2.name + "'s turn!"
   }
   currentPlayerInfo.appendChild(currentPlayerNameText)
   const currentPlayerIcon = document.createElement('div')
   currentPlayerIcon.classList.add('player', 'info', 'icon')
   currentPlayerIcon.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
-  if (gameManager.isPlayer1Turn === true) {
+  if (isPlayer1Turn === true) {
     currentPlayerIcon.classList.add('one')
-  } else if (gameManager.isPlayer1Turn === false) {
+  } else if (isPlayer1Turn === false) {
     currentPlayerIcon.classList.add('two')
   }
   currentPlayerInfo.appendChild(currentPlayerIcon)
@@ -82,8 +88,8 @@ function newGame() {
   currentPlayerInfo.appendChild(scoreGrid)
   content.appendChild(game)
   updateInstruction('Input the answer as fast as you can!')
-  gameManager.getStartTime()
-  gameManager.newQuestion()
+  getStartTime()
+  newQuestion()
   detectNumpadInput()
 }
 
@@ -92,7 +98,7 @@ function removeGame() {
   game.remove()
 }
 
-function transition() {
+export function transition() {
   removeGame()
   const content = document.querySelector('.content')
   const transitionCard = document.createElement('div')
@@ -100,7 +106,7 @@ function transition() {
   const transitionTitle = document.createElement('h2')
   transitionTitle.classList.add('transitionTitle')
   transitionTitle.textContent =
-    'Time for ' + playerManager.player2.name + " to play! Press the button below when you're ready!"
+    'Time for ' + player2.name + " to play! Press the button below when you're ready!"
   transitionCard.appendChild(transitionTitle)
   const transitionPlayerIcon = document.createElement('div')
   transitionPlayerIcon.classList.add('player', 'two', 'icon')
@@ -122,7 +128,7 @@ function removeTransition() {
   transitionCard.remove()
 }
 
-function showResult() {
+export function showResult() {
   removeGame()
   const content = document.querySelector('.content')
   const resultsCard = document.createElement('div')
@@ -148,23 +154,23 @@ function showResult() {
     resultsCard.appendChild(playerResults)
     if (showPlayer1Results === true) {
       playerResults.classList.add('one')
-      playerName.textContent = playerManager.player1.name
+      playerName.textContent = player1.name
       playerIcon.classList.add('one')
-      playerScore.textContent = 'Correct answers: ' + playerManager.player1.roundScore
-      playerTime.textContent = 'Time taken: ' + playerManager.player1.roundTime + ' seconds'
+      playerScore.textContent = 'Correct answers: ' + player1.roundScore
+      playerTime.textContent = 'Time taken: ' + player1.roundTime + ' seconds'
       showPlayer1Results = !showPlayer1Results
       continue
     } else if (showPlayer1Results === false) {
       playerResults.classList.add('two')
-      playerName.textContent = playerManager.player2.name
+      playerName.textContent = player2.name
       playerIcon.classList.add('two')
-      playerScore.textContent = 'Correct answers: ' + playerManager.player2.roundScore
-      playerTime.textContent = 'Time taken: ' + playerManager.player2.roundTime + ' seconds'
+      playerScore.textContent = 'Correct answers: ' + player2.roundScore
+      playerTime.textContent = 'Time taken: ' + player2.roundTime + ' seconds'
       continue
     }
   }
   content.appendChild(resultsCard)
-  showWinner(playerManager.determineWinner())
+  showWinner(determineWinner())
 }
 
 function showWinner(winner) {
@@ -172,13 +178,13 @@ function showWinner(winner) {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
     updateInstruction(
-      playerManager.player1.name + ' wins! Refresh the page or click the logo to play again...'
+      player1.name + ' wins! Refresh the page or click the logo to play again...'
     )
   } else if (winner === 'player2') {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
     updateInstruction(
-      playerManager.player2.name + ' wins! Refresh the page or click the logo to play again...'
+      player2.name + ' wins! Refresh the page or click the logo to play again...'
     )
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
@@ -194,7 +200,7 @@ function updateInstruction(inputText) {
   instruction.textContent = inputText
 }
 
-function updateScoreIcon(question, result) {
+export function updateScoreIcon(question, result) {
   if (question < 10) {
     const scoreIconList = document.querySelectorAll('.scoreIcon')
     const targetScoreIcon = scoreIconList[question - 1]
@@ -203,14 +209,14 @@ function updateScoreIcon(question, result) {
     } else if (result === false) {
       targetScoreIcon.classList.add('wrong')
     }
-    gameManager.newQuestion()
+    newQuestion()
   } else if (question >= 10) {
-    gameManager.endRound()
+    endRound()
   }
 }
 
 let questionLength
-function showQuestion(num1, operator, num2) {
+export function showQuestion(num1, operator, num2) {
   const questionBox = document.querySelector('.questionBox')
   questionBox.textContent = num1 + ' ' + operator + ' ' + num2 + '= '
   questionLength = questionBox.textContent.length
@@ -224,7 +230,7 @@ function detectNumpadInput() {
     const targetBtn = btn.target
     if (targetBtn.dataset.action === 'submit') {
       const inputAnswer = questionBox.textContent.slice(questionLength)
-      gameManager.checkAnswer(inputAnswer)
+      checkAnswer(inputAnswer)
     } else if (targetBtn.dataset.action === 'backspace') {
       if (questionBox.textContent.length > questionLength) {
         questionBox.textContent = questionBox.textContent.slice(0, -1)
@@ -241,7 +247,7 @@ function detectNextRound() {
   const transitionButton = document.querySelector('.transitionButton')
   transitionButton.addEventListener('click', () => {
     removeTransition()
-    gameManager.newRound()
+    newRound()
     newGame()
   })
 }
@@ -260,6 +266,6 @@ function detectKeyboardInput(press) {
     }
   } else if (press.key === 'Enter') {
     const inputAnswer = questionBox.textContent.slice(questionLength)
-    gameManager.checkAnswer(inputAnswer)
+    checkAnswer(inputAnswer)
   }
 }

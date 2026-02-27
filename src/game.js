@@ -1,11 +1,13 @@
+import { transition, showResult, updateScoreIcon, showQuestion } from "./display.js"
+import { player1, player2 } from "./player.js"
 let currentScore = 0
 let timeTaken = 0
 let startTime = 0
 let endTime = 0
-let isPlayer1Turn = true
+export let isPlayer1Turn = true
 let answer
 let question = 0
-function newRound() {
+export function newRound() {
   isPlayer1Turn = !isPlayer1Turn
   question = 0
   currentScore = 0
@@ -14,7 +16,7 @@ function newRound() {
 function incrementScore() {
   currentScore++
 }
-function getStartTime() {
+export function getStartTime() {
   startTime = performance.now()
 }
 function getEndTime() {
@@ -24,7 +26,7 @@ function calcCurrentTime() {
   // performance.now() gives time in ms, this rounds and converts output to s
   timeTaken = Math.floor((endTime - startTime) / 1000)
 }
-function newQuestion() {
+export function newQuestion() {
   if (question <= 10) {
     const num1 = Math.floor(Math.random() * 99) + 1
     const num2 = Math.floor(Math.random() * 99) + 1
@@ -39,7 +41,7 @@ function newQuestion() {
       newQuestion()
     } else {
       determineAnswer(num1, operator, num2)
-      displayManager.showQuestion(num1, operator, num2)
+      showQuestion(num1, operator, num2)
     }
   }
 }
@@ -50,26 +52,26 @@ function determineAnswer(num1, operator, num2) {
     answer = num1 - num2
   }
 }
-function checkAnswer(inputAnswer) {
+export function checkAnswer(inputAnswer) {
   if (answer === Number(inputAnswer)) {
     question++
     incrementScore()
-    displayManager.updateScoreIcon(question, true)
+    updateScoreIcon(question, true)
   } else if (answer !== Number(inputAnswer)) {
     question++
-    displayManager.updateScoreIcon(question, false)
+    updateScoreIcon(question, false)
   }
 }
-function endRound() {
+export function endRound() {
   getEndTime()
   calcCurrentTime()
   if (isPlayer1Turn === true) {
-    playerManager.player1.roundScore = currentScore
-    playerManager.player1.roundTime = timeTaken
-    displayManager.transition()
+    player1.roundScore = currentScore
+    player1.roundTime = timeTaken
+    transition()
   } else if (isPlayer1Turn === false) {
-    playerManager.player2.roundScore = currentScore
-    playerManager.player2.roundTime = timeTaken
-    displayManager.showResult()
+    player2.roundScore = currentScore
+    player2.roundTime = timeTaken
+    showResult()
   }
 }

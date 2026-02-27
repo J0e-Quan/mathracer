@@ -1,5 +1,5 @@
-const nameBtn = document.querySelector('.submit-name')
-nameBtn.addEventListener('click', () => {
+import { hideInitial } from "./display.js"
+export function setPlayerNames() {
   const player1NameInput = document.querySelector('.one.name')
   const player2NameInput = document.querySelector('.two.name')
   player1name = player1NameInput.value
@@ -12,10 +12,10 @@ nameBtn.addEventListener('click', () => {
   }
   player1 = createPlayer(player1name)
   player2 = createPlayer(player2name)
-  displayManager.hideInitial()
-})
+  hideInitial()
+}
 
-function determineWinner() {
+export function determineWinner() {
   if (player1.roundScore > player2.roundScore) {
     return 'player1'
   } else if (player1.roundScore < player2.roundScore) {
@@ -31,7 +31,7 @@ function determineWinner() {
   }
 }
 
-function createPlayer(playerName) {
+export function createPlayer(playerName) {
   let score = 0
   const name = playerName
 
@@ -62,5 +62,5 @@ function createPlayer(playerName) {
 
 let player1name
 let player2name
-let player1
-let player2
+export let player1
+export let player2
