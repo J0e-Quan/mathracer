@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/J0e-Quan/mathracerreadme",
   "devDependencies": {
-    "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.4",
     "eslint": "^8.57.1",

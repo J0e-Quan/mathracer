@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -15,9 +14,6 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
-    new CopyPlugin({
-      patterns: [{ from: 'src/assets', to: 'assets' }]
-    })
   ],
   module: {
     rules: [
