@@ -1,4 +1,4 @@
-import { hideInitial } from "./display.js"
+import { hideInitial } from './display.js'
 export function setPlayerNames() {
   const player1NameInput = document.querySelector('.one.name')
   const player2NameInput = document.querySelector('.two.name')

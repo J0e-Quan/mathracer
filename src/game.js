@@ -1,5 +1,5 @@
-import { transition, showResult, updateScoreIcon, showQuestion } from "./display.js"
-import { player1, player2 } from "./player.js"
+import { transition, showResult, updateScoreIcon, showQuestion } from './display.js'
+import { player1, player2 } from './player.js'
 let currentScore = 0
 let timeTaken = 0
 let startTime = 0

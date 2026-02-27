@@ -1,6 +1,11 @@
 import * as icons from './icons.js'
-import { removeInitialButtons } from './input.js'
-import { newQuestion, getStartTime, isPlayer1Turn, newRound, endRound, checkAnswer } from './game.js'
+import {
+  removeInitialButtons,
+  removeGameplayButtons,
+  initGameplayButtons,
+  detectNextRound
+} from './input.js'
+import { newQuestion, getStartTime, isPlayer1Turn, endRound } from './game.js'
 import { determineWinner, player1, player2 } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
@@ -11,8 +16,7 @@ export function hideInitial() {
   removeInitialButtons()
   newGame()
 }
-function newGame() {
-  window.removeEventListener('keydown', detectKeyboardInput)
+export function newGame() {
   const content = document.querySelector('.content')
   const game = document.createElement('div')
   game.classList.add('game')
@@ -87,10 +91,12 @@ function newGame() {
   }
   currentPlayerInfo.appendChild(scoreGrid)
   content.appendChild(game)
+
+  removeGameplayButtons()
   updateInstruction('Input the answer as fast as you can!')
   getStartTime()
   newQuestion()
-  detectNumpadInput()
+  initGameplayButtons()
 }
 
 function removeGame() {
@@ -123,7 +129,7 @@ export function transition() {
   detectNextRound()
 }
 
-function removeTransition() {
+export function removeTransition() {
   const transitionCard = document.querySelector('.transitionCard')
   transitionCard.remove()
 }
@@ -177,15 +183,11 @@ function showWinner(winner) {
   if (winner === 'player1') {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
-    updateInstruction(
-      player1.name + ' wins! Refresh the page or click the logo to play again...'
-    )
+    updateInstruction(player1.name + ' wins! Refresh the page or click the logo to play again...')
   } else if (winner === 'player2') {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
-    updateInstruction(
-      player2.name + ' wins! Refresh the page or click the logo to play again...'
-    )
+    updateInstruction(player2.name + ' wins! Refresh the page or click the logo to play again...')
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
     winResults.forEach((element) => {
@@ -215,57 +217,9 @@ export function updateScoreIcon(question, result) {
   }
 }
 
-let questionLength
+export let questionLength
 export function showQuestion(num1, operator, num2) {
   const questionBox = document.querySelector('.questionBox')
   questionBox.textContent = num1 + ' ' + operator + ' ' + num2 + '= '
   questionLength = questionBox.textContent.length
-}
-
-function detectNumpadInput() {
-  const numpad = document.querySelector('.numpad')
-  const questionBox = document.querySelector('.questionBox')
-  // event listener for clicking/touching the numpad
-  numpad.addEventListener('click', (btn) => {
-    const targetBtn = btn.target
-    if (targetBtn.dataset.action === 'submit') {
-      const inputAnswer = questionBox.textContent.slice(questionLength)
-      checkAnswer(inputAnswer)
-    } else if (targetBtn.dataset.action === 'backspace') {
-      if (questionBox.textContent.length > questionLength) {
-        questionBox.textContent = questionBox.textContent.slice(0, -1)
-      }
-    } else {
-      questionBox.textContent = questionBox.textContent + targetBtn.dataset.action
-    }
-  })
-  // event listener for keyboard input
-  window.addEventListener('keydown', detectKeyboardInput)
-}
-
-function detectNextRound() {
-  const transitionButton = document.querySelector('.transitionButton')
-  transitionButton.addEventListener('click', () => {
-    removeTransition()
-    newRound()
-    newGame()
-  })
-}
-
-function detectKeyboardInput(press) {
-  const questionBox = document.querySelector('.questionBox')
-  if (press.repeat) {
-    return
-  }
-  if (press.key >= '0' && press.key <= '9') {
-    const value = Number(press.key)
-    questionBox.textContent = questionBox.textContent + value
-  } else if (press.key === 'Backspace') {
-    if (questionBox.textContent.length > questionLength) {
-      questionBox.textContent = questionBox.textContent.slice(0, -1)
-    }
-  } else if (press.key === 'Enter') {
-    const inputAnswer = questionBox.textContent.slice(questionLength)
-    checkAnswer(inputAnswer)
-  }
 }
