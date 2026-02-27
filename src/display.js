@@ -280,13 +280,3 @@ function detectKeyboardInput(press) {
     gameManager.checkAnswer(inputAnswer)
   }
 }
-
-return {
-  hideInitial,
-  newGame,
-  transition,
-  showResult,
-  updateInstruction,
-  updateScoreIcon,
-  showQuestion
-}

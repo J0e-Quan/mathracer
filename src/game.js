@@ -73,20 +73,3 @@ function endRound() {
     displayManager.showResult()
   }
 }
-return {
-  get currentScore() {
-    return currentScore
-  },
-  get timeTaken() {
-    return timeTaken
-  },
-  get isPlayer1Turn() {
-    return isPlayer1Turn
-  },
-  newRound,
-  newQuestion,
-  getStartTime,
-  getEndTime,
-  checkAnswer,
-  endRound
-}

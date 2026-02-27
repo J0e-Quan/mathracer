@@ -1,2 +1,7 @@
-import './javascript.js'
+// import './javascript.js'
+
+import * as gameManager from './game.js'
+import * as playerManager from './player.js'
+import * as displayManager from './display.js'
+
 import './styles.css'

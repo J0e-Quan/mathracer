@@ -64,13 +64,3 @@ let player1name
 let player2name
 let player1
 let player2
-
-return {
-  get player1() {
-    return player1
-  },
-  get player2() {
-    return player2
-  },
-  determineWinner
-}
