@@ -1,6 +1,6 @@
 # MathRacer
 
-Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where two players compete to complete 10 simple maths questions in the shortest time possible!
+Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where two players compete to answer several simple maths questions in the shortest time possible!
 
 Live demo link: https://j0e-quan.github.io/mathracer/
 
@@ -15,10 +15,10 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 
 ## Key features:
 
-- Players can input their own names
+- Players can input their own names and adjust the number of questions per round
 - Tutorial menu helps to familiarize players with the game
 - Large-sized UI improves visibility
-- The game also features keyboard support
+- The game features keyboard support
 
 ## Credits:
 
@@ -28,8 +28,9 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 ## Gallery:
 
 ![picture showing initial state of the game](./readme-assets/initial.jpeg)
-![picture showing gameplay](./readme-assets/gameplay.jpeg)
+![picture showing gameplay with 10 questions per round](./readme-assets/gameplay.jpeg)
 ![picture showing a transition screen](./readme-assets/transition.jpeg)
+![picture showing gameplay with 5 questions per round](./readme-assets/gameplay-5q.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
 
 ## Getting started:
