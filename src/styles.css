@@ -308,8 +308,9 @@ header {
 .resultsCard {
   background-color: rgb(19, 81, 148);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
   gap: 2rem;
   padding: 1rem 2rem;
   margin: 1rem 2rem;
@@ -317,6 +318,7 @@ header {
 }
 
 .playerResults {
+  max-width: 40rem;
   padding: 1rem 1rem;
   display: grid;
   grid-template-columns: 1fr 4fr;
