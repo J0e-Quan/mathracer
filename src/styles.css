@@ -327,7 +327,7 @@ header {
   background-color: rgb(187, 187, 187);
 }
 
-.transitionButton:hover {
+.transitionButton:hover, .play-again:hover {
   background-color: rgb(241, 241, 241);
 }
 
@@ -348,7 +348,7 @@ header {
   padding: 1rem 1rem;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   background-color: rgb(187, 187, 187);
   border-radius: 2rem;
   border: 1rem solid black;
@@ -358,7 +358,7 @@ header {
 
 .result.icon {
   grid-column: 1;
-  grid-row: 1/4;
+  grid-row: 1/-1;
 }
 
 .playerName {
@@ -379,6 +379,12 @@ header {
   font-size: 2.5rem;
 }
 
+.playerWins {
+  grid-column: 2;
+  grid-row: 4;
+  font-size: 2.5rem;
+}
+
 .winner {
   border-color: yellow;
 }
@@ -389,4 +395,15 @@ header {
 
 .winner .playerName {
   color: yellow;
+}
+
+.play-again {
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  border: 0.5rem solid rgb(63, 63, 63);
+  background-color: rgb(187, 187, 187);
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }

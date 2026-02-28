@@ -17,13 +17,17 @@ export function setPlayerNames() {
 
 export function determineWinner() {
   if (player1.roundScore > player2.roundScore) {
+    player1.incrementScore()
     return 'player1'
   } else if (player1.roundScore < player2.roundScore) {
+    player2.incrementScore()
     return 'player2'
   } else if (player1.roundScore === player2.roundScore) {
     if (player1.roundTime < player2.roundTime) {
+      player1.incrementScore()
       return 'player1'
     } else if (player1.roundTime > player2.roundTime) {
+      player2.incrementScore()
       return 'player2'
     } else if (player1.roundTime === player2.roundTime) {
       return 'tie'
@@ -32,11 +36,12 @@ export function determineWinner() {
 }
 
 export function createPlayer(playerName) {
-  let score = 0
   const name = playerName
+  let _score = 0
 
   function incrementScore() {
-    score = score++
+    _score++
+    console.log(_score)
   }
 
   return {
@@ -53,7 +58,7 @@ export function createPlayer(playerName) {
       this._roundTime = timeTaken
     },
     get score() {
-      return this._score
+      return _score
     },
     name,
     incrementScore

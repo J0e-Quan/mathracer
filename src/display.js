@@ -171,6 +171,9 @@ export function showResult() {
     const playerTime = document.createElement('h3')
     playerTime.classList.add('playerTime')
     playerResults.appendChild(playerTime)
+    const playerWins = document.createElement('h3')
+    playerWins.classList.add('playerWins')
+    playerResults.appendChild(playerWins)
     resultsCard.appendChild(playerResults)
     if (showPlayer1Results === true) {
       playerResults.classList.add('one')
@@ -178,6 +181,7 @@ export function showResult() {
       playerIcon.classList.add('one')
       playerScore.textContent = 'Correct answers: ' + player1.roundScore
       playerTime.textContent = 'Time taken: ' + player1.roundTime + ' seconds'
+      playerWins.textContent = 'Rounds won: ' + player1.score
       showPlayer1Results = !showPlayer1Results
       continue
     } else if (showPlayer1Results === false) {
@@ -186,10 +190,16 @@ export function showResult() {
       playerIcon.classList.add('two')
       playerScore.textContent = 'Correct answers: ' + player2.roundScore
       playerTime.textContent = 'Time taken: ' + player2.roundTime + ' seconds'
+      playerWins.textContent = 'Rounds won: ' + player2.score
       continue
     }
   }
   content.appendChild(resultsCard)
+  const playAgain = document.createElement('button')
+  playAgain.type = 'button'
+  playAgain.classList.add('play-again')
+  playAgain.textContent = 'Play Again'
+  content.appendChild(playAgain)
   showWinner(determineWinner())
 }
 
@@ -197,18 +207,27 @@ function showWinner(winner) {
   if (winner === 'player1') {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
-    updateInstruction(player1.name + ' wins! Refresh the page or click the logo to play again...')
+    updateInstruction(player1.name + ' wins!')
+    updatePlayerWins()
   } else if (winner === 'player2') {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
-    updateInstruction(player2.name + ' wins! Refresh the page or click the logo to play again...')
+    updateInstruction(player2.name + ' wins!')
+    updatePlayerWins()
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
     winResults.forEach((element) => {
       element.classList.add('winner')
     })
-    updateInstruction("It's a tie! Refresh the page or click the logo to play again...")
+    updateInstruction("It's a tie!")
   }
+}
+
+function updatePlayerWins() {
+  const player1Wins = document.querySelector('.one .playerWins')
+  const player2Wins = document.querySelector('.two .playerWins')
+  player1Wins.textContent = 'Rounds won: ' + player1.score
+  player2Wins.textContent = 'Rounds won: ' + player2.score
 }
 
 const instruction = document.querySelector('.instruction')

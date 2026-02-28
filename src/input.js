@@ -100,7 +100,6 @@ export function removeGameplayButtons() {
   if (numpad != null) {
     numpad.removeEventListener('click', detectNumpadInput)
     window.removeEventListener('keydown', detectKeyboardInput)
-    console.log('gameplay listeners removed!!!!!!')
   }
 }
 
