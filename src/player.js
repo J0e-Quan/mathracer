@@ -41,7 +41,6 @@ export function createPlayer(playerName) {
 
   function incrementScore() {
     _score++
-    console.log(_score)
   }
 
   return {
