@@ -1,4 +1,3 @@
-import { hideInitial } from './display.js'
 export function setPlayerNames() {
   const player1NameInput = document.querySelector('.one.name')
   const player2NameInput = document.querySelector('.two.name')
@@ -12,7 +11,6 @@ export function setPlayerNames() {
   }
   player1 = createPlayer(player1name)
   player2 = createPlayer(player2name)
-  hideInitial()
 }
 
 export function determineWinner() {
@@ -22,7 +20,11 @@ export function determineWinner() {
   } else if (player1.roundScore < player2.roundScore) {
     player2.incrementScore()
     return 'player2'
-  } else if (player1.roundScore === player2.roundScore && player1.roundScore > 0 && player2.roundScore > 0) {
+  } else if (
+    player1.roundScore === player2.roundScore &&
+    player1.roundScore > 0 &&
+    player2.roundScore > 0
+  ) {
     if (player1.roundTime < player2.roundTime) {
       player1.incrementScore()
       return 'player1'

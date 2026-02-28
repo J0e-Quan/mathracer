@@ -6,7 +6,7 @@ import {
   detectNextPlayer,
   detectNextRound
 } from './input.js'
-import { newQuestion, getStartTime, isPlayer1Turn, endRound, totalQuestions } from './game.js'
+import { isPlayer1Turn, totalQuestions } from './game.js'
 import { determineWinner, player1, player2 } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
@@ -92,11 +92,8 @@ export function newGame() {
   }
   currentPlayerInfo.appendChild(scoreGrid)
   content.appendChild(game)
-
   removeGameplayButtons()
   updateInstruction('Input the answer as fast as you can!')
-  getStartTime()
-  newQuestion()
   initGameplayButtons()
 }
 
@@ -219,7 +216,7 @@ function showWinner(winner) {
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
     winResults.forEach((element) => {
-    element.classList.add('winner')
+      element.classList.add('winner')
     })
     updateInstruction("It's a tie!")
   } else if (winner === 'zero') {
@@ -247,17 +244,12 @@ function updateInstruction(inputText) {
 }
 
 export function updateScoreIcon(question, result) {
-  if (question < totalQuestions) {
-    const scoreIconList = document.querySelectorAll('.scoreIcon')
-    const targetScoreIcon = scoreIconList[question - 1]
-    if (result === true) {
-      targetScoreIcon.classList.add('correct')
-    } else if (result === false) {
-      targetScoreIcon.classList.add('wrong')
-    }
-    newQuestion()
-  } else if (totalQuestions) {
-    endRound()
+  const scoreIconList = document.querySelectorAll('.scoreIcon')
+  const targetScoreIcon = scoreIconList[question - 1]
+  if (result === true) {
+    targetScoreIcon.classList.add('correct')
+  } else if (result === false) {
+    targetScoreIcon.classList.add('wrong')
   }
 }
 

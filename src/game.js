@@ -22,6 +22,7 @@ export function updateTotalQuestions(num) {
 }
 export function getStartTime() {
   startTime = performance.now()
+  newQuestion()
 }
 function getEndTime() {
   endTime = performance.now()
@@ -64,6 +65,11 @@ export function checkAnswer(inputAnswer) {
   } else if (answer !== Number(inputAnswer)) {
     question++
     updateScoreIcon(question, false)
+  }
+  if (question < totalQuestions) {
+    newQuestion()
+  } else {
+    endRound()
   }
 }
 export function endRound() {
