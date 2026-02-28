@@ -1,6 +1,6 @@
 import { setPlayerNames } from './player.js'
 import { checkAnswer, newRound, updateTotalQuestions } from './game.js'
-import { questionLength, removeTransition, newGame } from './display.js'
+import { questionLength, transition, removeTransition, newGame, removeResults } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
 const tutorial = document.querySelector('.tutorial')
@@ -103,7 +103,7 @@ export function removeGameplayButtons() {
   }
 }
 
-export function detectNextRound() {
+export function detectNextPlayer() {
   const transitionButton = document.querySelector('.transitionButton')
   transitionButton.addEventListener(
     'click',
@@ -111,6 +111,18 @@ export function detectNextRound() {
       removeTransition()
       newRound()
       newGame()
+    },
+    { once: true }
+  )
+}
+
+export function detectNextRound() {
+  const playAgainButton = document.querySelector('.play-again')
+  playAgainButton.addEventListener(
+    'click',
+    () => {
+      removeResults()
+      transition()
     },
     { once: true }
   )

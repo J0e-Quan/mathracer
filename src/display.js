@@ -3,6 +3,7 @@ import {
   removeInitialButtons,
   removeGameplayButtons,
   initGameplayButtons,
+  detectNextPlayer,
   detectNextRound
 } from './input.js'
 import { newQuestion, getStartTime, isPlayer1Turn, endRound, totalQuestions } from './game.js'
@@ -139,7 +140,7 @@ export function transition() {
   transitionCard.appendChild(transitionButton)
   content.appendChild(transitionCard)
   updateInstruction('Waiting for the next player...')
-  detectNextRound()
+  detectNextPlayer()
 }
 
 export function removeTransition() {
@@ -200,6 +201,7 @@ export function showResult() {
   playAgain.classList.add('play-again')
   playAgain.textContent = 'Play Again'
   content.appendChild(playAgain)
+  detectNextRound()
   showWinner(determineWinner())
 }
 
@@ -207,12 +209,12 @@ function showWinner(winner) {
   if (winner === 'player1') {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
-    updateInstruction(player1.name + ' wins!')
+    updateInstruction(player1.name + ' wins this round!')
     updatePlayerWins()
   } else if (winner === 'player2') {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
-    updateInstruction(player2.name + ' wins!')
+    updateInstruction(player2.name + ' wins this round!')
     updatePlayerWins()
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
@@ -221,6 +223,13 @@ function showWinner(winner) {
     })
     updateInstruction("It's a tie!")
   }
+}
+
+export function removeResults() {
+  const resultsCard = document.querySelector('.resultsCard')
+  resultsCard.remove()
+  const playAgainButton = document.querySelector('.play-again')
+  playAgainButton.remove()
 }
 
 function updatePlayerWins() {
