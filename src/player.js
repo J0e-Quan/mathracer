@@ -22,7 +22,7 @@ export function determineWinner() {
   } else if (player1.roundScore < player2.roundScore) {
     player2.incrementScore()
     return 'player2'
-  } else if (player1.roundScore === player2.roundScore) {
+  } else if (player1.roundScore === player2.roundScore && player1.roundScore > 0 && player2.roundScore > 0) {
     if (player1.roundTime < player2.roundTime) {
       player1.incrementScore()
       return 'player1'
@@ -32,6 +32,8 @@ export function determineWinner() {
     } else if (player1.roundTime === player2.roundTime) {
       return 'tie'
     }
+  } else {
+    return 'zero'
   }
 }
 

@@ -219,9 +219,11 @@ function showWinner(winner) {
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
     winResults.forEach((element) => {
-      element.classList.add('winner')
+    element.classList.add('winner')
     })
     updateInstruction("It's a tie!")
+  } else if (winner === 'zero') {
+    updateInstruction("It can't be that hard...")
   }
 }
 
