@@ -78,7 +78,7 @@ export function endRound() {
   if (isPlayer1Turn === true) {
     player1.roundScore = currentScore
     player1.roundTime = timeTaken
-    transition()
+    transition(isPlayer1Turn)
   } else if (isPlayer1Turn === false) {
     player2.roundScore = currentScore
     player2.roundTime = timeTaken

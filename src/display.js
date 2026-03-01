@@ -6,7 +6,6 @@ import {
   detectNextPlayer,
   detectNextRound
 } from './input.js'
-import { isPlayer1Turn, totalQuestions } from './game.js'
 import { determineWinner, player1, player2 } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
@@ -15,9 +14,14 @@ export function hideInitial() {
   tutorialBtn.classList.add('hidden')
   initial.classList.add('hidden')
   removeInitialButtons()
-  transition()
 }
-export function newGame() {
+export function newGame(isPlayer1Turn, totalQuestions) {
+  let currentPlayerName
+  if (isPlayer1Turn === true) {
+    currentPlayerName = player1.name
+  } else if (isPlayer1Turn === false) {
+    currentPlayerName = player2.name
+  }
   const content = document.querySelector('.content')
   const game = document.createElement('div')
   game.classList.add('game')
@@ -64,11 +68,7 @@ export function newGame() {
   currentPlayerInfo.classList.add('currentPlayerInfo')
   const currentPlayerNameText = document.createElement('h2')
   currentPlayerNameText.classList.add('currentPlayerNameText')
-  if (isPlayer1Turn === true) {
-    currentPlayerNameText.textContent = "It's " + player1.name + "'s turn!"
-  } else if (isPlayer1Turn === false) {
-    currentPlayerNameText.textContent = "It's " + player2.name + "'s turn!"
-  }
+  currentPlayerNameText.textContent = "It's " + currentPlayerName + "'s turn!"
   currentPlayerInfo.appendChild(currentPlayerNameText)
   const currentPlayerIcon = document.createElement('div')
   currentPlayerIcon.classList.add('player', 'info', 'icon')
@@ -104,7 +104,7 @@ function removeGame() {
   }
 }
 
-export function transition() {
+export function transition(isPlayer1Turn) {
   removeGameplayButtons()
   removeGame()
   const content = document.querySelector('.content')
@@ -112,14 +112,14 @@ export function transition() {
   transitionCard.classList.add('transitionCard')
   const transitionTitle = document.createElement('h2')
   transitionTitle.classList.add('transitionTitle')
-  let currentPlayerName
+  let displayName
   if (isPlayer1Turn === false) {
-    currentPlayerName = player1.name
+    displayName = player1.name
   } else if (isPlayer1Turn === true) {
-    currentPlayerName = player2.name
+    displayName = player2.name
   }
   transitionTitle.textContent =
-    'Time for ' + currentPlayerName + " to play! Press the button below when you're ready!"
+    'Time for ' + displayName + " to play! Press the button below when you're ready!"
   transitionCard.appendChild(transitionTitle)
   const transitionPlayerIcon = document.createElement('div')
   if (isPlayer1Turn === false) {

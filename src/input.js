@@ -1,5 +1,5 @@
 import { setPlayerNames } from './player.js'
-import { checkAnswer, getStartTime, newRound, updateTotalQuestions } from './game.js'
+import { checkAnswer, getStartTime, newRound, updateTotalQuestions, isPlayer1Turn, totalQuestions } from './game.js'
 import { questionLength, transition, removeTransition, newGame, removeResults, hideInitial } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
@@ -40,6 +40,7 @@ function toggleQuestions(btn) {
 function beginGame() {
   setPlayerNames()
   hideInitial()
+  transition(isPlayer1Turn)
 }
 
 export function initInitialButtons() {
@@ -115,7 +116,7 @@ export function detectNextPlayer() {
     () => {
       removeTransition()
       newRound()
-      newGame()
+      newGame(isPlayer1Turn, totalQuestions)
       getStartTime()
     },
     { once: true }
@@ -128,7 +129,7 @@ export function detectNextRound() {
     'click',
     () => {
       removeResults()
-      transition()
+      transition(isPlayer1Turn)
     },
     { once: true }
   )
