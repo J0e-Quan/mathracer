@@ -1,4 +1,5 @@
 import { setPlayerNames } from './player.js'
+import { updateStorage, retrieveStorage } from './storage.js'
 import { checkAnswer, getStartTime, newRound, updateTotalQuestions, isPlayer1Turn, totalQuestions } from './game.js'
 import { questionLength, transition, removeTransition, newGame, removeResults, hideInitial } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
@@ -11,6 +12,8 @@ const fiveQuestions = document.querySelector('.five.questions')
 const tenQuestions = document.querySelector('.ten.questions')
 let numpad
 let questionBox
+const settings = retrieveStorage()
+initQuestions(settings.totalQuestions)
 
 function showTutorial() {
   initial.classList.add('hidden')
@@ -22,6 +25,22 @@ function hideTutorial() {
   initial.classList.remove('hidden')
   tutorialBtn.classList.remove('hidden')
   tutorial.classList.add('hidden')
+}
+
+function initQuestions(totalQuestions) {
+  const fiveQuestions = document.querySelector('.five')
+  const tenQuestions = document.querySelector('.ten')
+  if (totalQuestions === 5) {
+    // set total to 5
+    fiveQuestions.classList.add('checked')
+    tenQuestions.classList.remove('checked')
+    updateTotalQuestions(5)
+  } else if (totalQuestions === 10) {
+    // set total to 10
+    tenQuestions.classList.add('checked')
+    fiveQuestions.classList.remove('checked')
+    updateTotalQuestions(10)
+  }
 }
 
 function toggleQuestions(btn) {
