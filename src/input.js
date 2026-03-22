@@ -49,10 +49,12 @@ function toggleQuestions(btn) {
     targetBtn.classList.add('checked')
     tenQuestions.classList.remove('checked')
     updateTotalQuestions(5)
+    updateStorage('totalQuestions', 5)
   } else if (targetBtn.classList.contains('ten') && !targetBtn.classList.contains('checked')) {
     targetBtn.classList.add('checked')
     fiveQuestions.classList.remove('checked')
     updateTotalQuestions(10)
+    updateStorage('totalQuestions', 10)
   }
 }
 
