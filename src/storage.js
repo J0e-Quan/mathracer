@@ -1,4 +1,4 @@
-const settings = {totalQuestions: 10}
+let settings = {totalQuestions: 10}
 
 export function updateStorage(category, value) {
   settings[category] = value
@@ -6,5 +6,9 @@ export function updateStorage(category, value) {
 }
 
 export function retrieveStorage() {
-  return localStorage.getItem("settings")
+  if (localStorage.getItem("settings") !== null) {
+    settings = localStorage.getItem("settings")
+  } else {
+    settings = { totalQuestions: 10 }
+  return settings
 }
