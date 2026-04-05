@@ -1,7 +1,21 @@
 import { setPlayerNames } from './player.js'
 import { updateStorage, retrieveStorage } from './storage.js'
-import { checkAnswer, getStartTime, newRound, updateTotalQuestions, isPlayer1Turn, totalQuestions } from './game.js'
-import { questionLength, transition, removeTransition, newGame, removeResults, hideInitial } from './display.js'
+import {
+  checkAnswer,
+  getStartTime,
+  newRound,
+  updateTotalQuestions,
+  isPlayer1Turn,
+  totalQuestions
+} from './game.js'
+import {
+  questionLength,
+  transition,
+  removeTransition,
+  newGame,
+  removeResults,
+  hideInitial
+} from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
 const tutorial = document.querySelector('.tutorial')

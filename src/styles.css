@@ -56,12 +56,31 @@ button {
   outline: none;
 }
 
+:root {
+  --player-1: rgb(0, 106, 255);
+  --player-2: rgb(255, 0, 0);
+}
+
+/* MATHRACER THEMES START
+        VVVVVVVVVV      */
+
+:root {
+  --background: rgb(110, 180, 255);
+  --accent-1: rgb(19, 81, 148);
+  --button-border: rgb(63, 63, 63);
+  --button-background: rgb(187, 187, 187);
+  --button-background-hover: rgb(241, 241, 241)
+}
+
+/*      ^^^^^^^^^^
+   MATHRACER THEMES END */
+
 .hidden {
   display: none !important;
 }
 
 body {
-  background-color: rgb(110, 180, 255);
+  background-color: var(--background);
 }
 
 header {
@@ -70,7 +89,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   padding: 1rem 2rem;
-  background-color: rgb(19, 81, 148);
+  background-color: var(--accent-1);
 }
 
 .instruction {
@@ -99,7 +118,7 @@ header {
 }
 
 .one.icon {
-  fill: rgb(0, 106, 255);
+  fill: var(--player-1);
 }
 
 .player.two {
@@ -111,22 +130,22 @@ header {
 }
 
 .two.icon {
-  fill: rgb(255, 0, 0);
+  fill: var(--player-2);
 }
 
 .name {
   border-radius: 2rem;
   padding: 0.5rem 1rem;
-  border: 0.5rem solid rgb(63, 63, 63);
+  border: 0.5rem solid var(--button-border);
   font-size: 2rem;
 }
 
 .one.name {
-  border-color: rgb(0, 106, 255);
+  border-color: var(--player-1);
 }
 
 .two.name {
-  border-color: rgb(255, 0, 0);
+  border-color: var(--player-2);
 }
 
 .row-2 {
@@ -141,15 +160,15 @@ header {
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 2rem;
-  border: 0.5rem solid rgb(63, 63, 63);
-  background-color: rgb(187, 187, 187);
+  border: 0.5rem solid var(--button-border);
+  background-color: var(--button-background);
 }
 
 .questions {
   padding: 1rem 2rem;
   font-size: 2rem;
-  border: 0.5rem solid rgb(63, 63, 63);
-  background-color: rgb(187, 187, 187);
+  border: 0.5rem solid var(--button-border);
+  background-color: var(--button-background);
 }
 
 .five.questions {
@@ -172,7 +191,7 @@ header {
 .tutorial-button:hover,
 .submit-name:hover,
 .questions:hover:not(.checked) {
-  background-color: rgb(241, 241, 241);
+  background-color: var(--button-background-hover);
 }
 
 .submit-name {
@@ -181,12 +200,12 @@ header {
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 2rem;
-  border: 0.5rem solid rgb(63, 63, 63);
-  background-color: rgb(187, 187, 187);
+  border: 0.5rem solid var(--button-border);
+  background-color: var(--button-background);
 }
 
 .tutorial {
-  background-color: rgb(19, 81, 148);
+  background-color: var(--accent-1);
   color: white;
   margin: 1rem;
   border-radius: 1rem;
@@ -206,15 +225,15 @@ header {
 .close-tutorial {
   padding: 1rem 2.5rem;
   border-radius: 2rem;
-  border: 0.5rem solid black;
+  border: 0.5rem solid var(--button-border);
   font-size: 2rem;
   display: block;
   margin: 2rem auto;
-  background-color: rgb(187, 187, 187);
+  background-color: var(--button-background);
 }
 
 .close-tutorial:hover {
-  background-color: rgb(241, 241, 241);
+  background-color: var(--button-background-hover);
 }
 
 .game {
@@ -241,7 +260,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.5rem solid rgb(187, 187, 187);
+  border: 0.5rem solid var(--button-background);
 }
 
 .numpadBtn:hover {
@@ -257,16 +276,16 @@ header {
 .questionBox {
   grid-column: 2;
   padding: 0 1rem;
-  background-color: rgb(241, 241, 241);
+  background-color: var(--button-background-hover);
   border-radius: 2rem;
-  border: 1rem solid rgb(187, 187, 187);
+  border: 1rem solid var(--button-background);
   font-size: 4.5rem;
 }
 
 .currentPlayerInfo {
   grid-column: 2;
   grid-row: 2;
-  background-color: rgb(19, 81, 148);
+  background-color: var(--accent-1);
   border-radius: 2rem;
   border: 1rem solid black;
   padding: 1rem 2rem;
@@ -306,7 +325,7 @@ header {
 .transitionCard {
   margin: 1rem 2rem;
   padding: 1rem 2rem;
-  background-color: rgb(19, 81, 148);
+  background-color: var(--accent-1);
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -323,19 +342,19 @@ header {
 .transitionButton {
   padding: 1rem 2.5rem;
   border-radius: 2rem;
-  border: 0.5rem solid black;
+  border: 0.5rem solid var(--button-border);
   font-size: 2rem;
   display: block;
-  background-color: rgb(187, 187, 187);
+  background-color: var(--button-background);
 }
 
 .transitionButton:hover,
 .play-again:hover {
-  background-color: rgb(241, 241, 241);
+  background-color: var(--button-background-hover);
 }
 
 .resultsCard {
-  background-color: rgb(19, 81, 148);
+  background-color: var(--accent-1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -352,10 +371,9 @@ header {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 2fr 1fr 1fr 1fr;
-  background-color: rgb(187, 187, 187);
+  background-color: var(--button-background);
   border-radius: 2rem;
   border: 1rem solid black;
-  /* height: fit-content; */
   align-items: center;
 }
 
@@ -404,8 +422,8 @@ header {
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 2rem;
-  border: 0.5rem solid rgb(63, 63, 63);
-  background-color: rgb(187, 187, 187);
+  border: 0.5rem solid var(--button-border);
+  background-color: var(--button-background);
   margin-bottom: 1rem;
   display: flex;
   justify-self: center;
