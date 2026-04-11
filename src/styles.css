@@ -59,6 +59,7 @@ button {
 :root {
   --player-1: rgb(0, 106, 255);
   --player-2: rgb(255, 0, 0);
+  --player-3: rgb(40, 200, 75);
 }
 
 /* MATHRACER THEMES START
