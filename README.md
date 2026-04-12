@@ -15,7 +15,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 
 ## Key features:
 
-- Players can input their own names and adjust the number of questions per round
+- Number of players and questions per round can be customised
 - Tutorial menu helps to familiarize players with the game
 - Large-sized UI improves visibility
 - The game features keyboard support
@@ -32,6 +32,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 ![picture showing a transition screen](./readme-assets/transition.jpeg)
 ![picture showing gameplay with 5 questions per round](./readme-assets/gameplay-5q.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
+![picture showing a narrower version of the game layout](./readme-assets/narrow.jpeg)
 
 ## Getting started:
 
