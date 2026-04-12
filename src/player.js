@@ -63,7 +63,7 @@ export function determineWinner() {
   }
 }
 
-export function createPlayer(playerName) {
+export function createPlayer(playerName, playerNumber) {
   const name = playerName
   let _score = 0
 
@@ -88,7 +88,8 @@ export function createPlayer(playerName) {
       return _score
     },
     name,
-    incrementScore
+    incrementScore,
+    playerNumber
   }
 }
 
