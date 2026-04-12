@@ -79,7 +79,7 @@ export function createPlayer(playerName) {
   }
 }
 
-export let player1
-export let player2
-export let player3
+let player1
+let player2
+let player3
 export const allPlayers = []
