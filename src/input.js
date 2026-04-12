@@ -184,6 +184,7 @@ export function detectNextRound() {
     'click',
     () => {
       removeResults()
+      newRound()
       transition(currentPlayerIndex)
     },
     { once: true }
