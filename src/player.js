@@ -25,16 +25,20 @@ export function setPlayerNames() {
 }
 
 export function determineWinner() {
-  let scoreArr = []
-  allPlayers.forEach((player) => {
-    // extract scores and push into scoreArr
+  let scoreArr = allPlayers.sort((a, b) => {
+    a.roundScore - b.roundScore
   })
-  // sort scoreArr
-  // if highest score is available, make that player the winner
-  // if top 2 are tied, make timeArr
-  // extract times and push into timeArr
-  // sort timeArr (backwards!)
-  // if lowest time is available, make that player the winner
+  if (checkTie(scoreArr, roundScore) === false) {
+    return scoreArr[0]. playerNumber 
+  } else if (checkTie(scoreArr, roundScore) === true) {
+    const timeArr = allPlayers.sort((a, b) => {
+      b.roundTime - a.roundTime
+    }
+    if (checkTie(timeArr, roundTime) === false) {
+      return timeArr[0]. playerNumber 
+    } else if (checkTie(timeArr, roundTime) === true) {
+      // identify tied players
+    }
   // if top 2 scores AND times are the same, make it a tie (multiple winners)
   // if all 3 scores AND times are the same, make it a tie (multiple winners)
   // if all 3 have a score of 0, show 'fail' msg, no players win
