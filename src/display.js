@@ -215,15 +215,17 @@ export function showResult() {
 }
 
 function showWinner(winner) {
+  if (winner.length === 0) {
+    updateInstruction("It can't be that hard...")
+    updatePlayerWins()
+  }
   winner.forEach((num) => {
     if (num === 1) {
-      console.log(1)
       const winResults = document.querySelector('.playerResults.one')
       winResults.classList.add('winner')
       updateInstruction(allPlayers[0].name + ' wins this round!')
       updatePlayerWins()
     } else if (num === 2) {
-      console.log(2)
       const winResults = document.querySelector('.playerResults.two')
       winResults.classList.add('winner')
       updateInstruction(allPlayers[1].name + ' wins this round!')
@@ -235,10 +237,8 @@ function showWinner(winner) {
       updatePlayerWins()    
     }
     if (winner.length > 1) {
-      updateInstruction("It's a tie!")
-      updatePlayerWins()
-    } else if (winner.length === 0) {
-      updateInstruction("It can't be that hard...")
+      console.log('tie!!')
+      updateInstruction("We have a tie!")
       updatePlayerWins()
     }
   })
