@@ -29,6 +29,11 @@ export function determineWinner() {
   allPlayers.forEach((player) => {
     // extract scores and push into scoreArr
   })
+
+
+  // DELETE THIS LINE THEN GIT PULL WHEN YOU'RE BACK!!!!!
+
+
   // sort scoreArr
   // if highest score is available, make that player the winner
   // if top 2 are tied, make timeArr
