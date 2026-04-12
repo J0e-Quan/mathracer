@@ -33,9 +33,9 @@ export function removePlayerForm() {
 }
 
 export function hideInitial() {
-  tutorialBtn.classList.add('hidden')
-  initial.classList.add('hidden')
   removeInitialButtons()
+  tutorialBtn.remove()
+  initial.remove()
 }
 export function newGame(currentPlayerIndex, totalQuestions) {
   const currentPlayerName = allPlayers[currentPlayerIndex].name
