@@ -6,20 +6,20 @@ export function setPlayerNames() {
   if (player1name === '' || player1name === null) {
     player1name = 'Player 1'
   }
-  player1 = createPlayer(player1name)
+  player1 = createPlayer(player1name, 1)
   allPlayers.push(player1)
   let player2name = player2NameInput.value
   if (player2name === '' || player2name === null) {
     player2name = 'Player 2'
   }
-  player2 = createPlayer(player2name)
+  player2 = createPlayer(player2name, 2)
   allPlayers.push(player2)
   if (player3NameInput !== null) {
     let player3name = player3NameInput.value
     if (player3name === '' || player3name === null) {
       player3name = 'Player 3'
     }
-    player3 = createPlayer(player3name)
+    player3 = createPlayer(player3name, 3)
     allPlayers.push(player3)
   }
 }
