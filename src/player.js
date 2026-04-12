@@ -27,35 +27,35 @@ export function setPlayerNames() {
 export function determineWinner() {
   const winner = []
   const scoreArr = allPlayers.toSorted((a, b) => {
-    return b.roundScore - a.roundScore     // descending order so highest score comes first
+    // descending order so highest score comes first
+    return b.roundScore - a.roundScore     
   })
   if (checkTie(scoreArr, 'roundScore') === false) {
+    console.log("win by scoring highest: " + scoreArr[0].playerNumber)
     winner.push(scoreArr[0].playerNumber)
     scoreArr[0].incrementScore()
   } else {
-    const timeArr = allPlayers.toSorted((a, b) => {
-      return a.roundTime - b.roundTime     // ascending order so shortest time comes first
-    })
-    if (checkTie(timeArr, 'roundTime') === false) {
-      winner.push(timeArr[0].playerNumber)
-      timeArr[0].incrementScore()
-    } else {
-      // in a tie, the highest player in scoreArr and timeArr will be the same player
-      const highestScore = scoreArr[0].roundScore
-      const highestTime = timeArr[0].roundTime
-      if (allPlayers.filter((player) => {
-        return player.roundScore > 0
-      }).length === 0) {
+      // if there are identical scores, get best scoring player first to prioritise score
+      const bestScore = scoreArr[0].roundScore
+      // if all players score 0, show easter egg msg and skip checks
+      if (bestScore === 0) {
         return winner
       }
-      allPlayers.forEach((player) => {
-        if (player.roundScore === highestScore && player.roundTime === highestTime) {
+      // filter out only players with the same best score then sort them by time
+      const tiedScore = (allPlayers.filter((player) => {
+        return player.roundScore === bestScore
+      })).sort((a, b) => {
+        return a.roundTime - b.roundTime
+      })
+      // push players with the same best score and best time to winners array
+      const bestTime = tiedScore[0].roundTime
+      tiedScore.forEach((player) => {
+        if (player.roundTime === bestTime) {
+          console.log("win by scoring fastest and highest: "+player.playerNumber)
           winner.push(player.playerNumber)
-          player.incrementScore()
         }
       })
     }
-  }
   return winner
 }
 
@@ -74,9 +74,6 @@ function checkTie(inputArr, targetProperty) {
     }
   }
 }
-  // if top 2 scores AND times are the same, make it a tie (multiple winners)
-  // if all 3 scores AND times are the same, make it a tie (multiple winners)
-  // if all 3 have a score of 0, show 'fail' msg, no players win
 
 export function createPlayer(playerName, playerNumber) {
   const name = playerName
