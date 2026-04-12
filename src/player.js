@@ -25,6 +25,19 @@ export function setPlayerNames() {
 }
 
 export function determineWinner() {
+  let scoreArr = []
+  allPlayers.forEach((player) => {
+    // extract scores and push into scoreArr
+  })
+  // sort scoreArr
+  // if highest score is available, make that player the winner
+  // if top 2 are tied, make timeArr
+  // extract times and push into timeArr
+  // sort timeArr (backwards!)
+  // if lowest time is available, make that player the winner
+  // if top 2 scores AND times are the same, make it a tie (multiple winners)
+  // if all 3 scores AND times are the same, make it a tie (multiple winners)
+  // if all 3 have a score of 0, show 'fail' msg, no players win
   if (player1.roundScore > player2.roundScore) {
     player1.incrementScore()
     return 'player1'
