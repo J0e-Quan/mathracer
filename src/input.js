@@ -14,13 +14,18 @@ import {
   removeTransition,
   newGame,
   removeResults,
-  hideInitial
+  hideInitial,
+  addPlayerForm,
+  removePlayerForm
 } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
 const tutorial = document.querySelector('.tutorial')
 const initial = document.querySelector('.initial')
 const nameBtn = document.querySelector('.submit-name')
+const playerToggle = document.querySelector('.player-toggle')
+const twoPlayers = document.querySelector('.two.players')
+const threePlayers = document.querySelector('.three.players')
 const questionsToggle = document.querySelector('.questions-toggle')
 const fiveQuestions = document.querySelector('.five.questions')
 const tenQuestions = document.querySelector('.ten.questions')
@@ -39,6 +44,19 @@ function hideTutorial() {
   initial.classList.remove('hidden')
   tutorialBtn.classList.remove('hidden')
   tutorial.classList.add('hidden')
+}
+
+function togglePlayer(btn) {
+  const targetBtn = btn.target
+  if (targetBtn.classList.contains('two') && !targetBtn.classList.contains('checked')) {
+    targetBtn.classList.add('checked')
+    threePlayers.classList.remove('checked')
+    removePlayerForm()
+  } else if (targetBtn.classList.contains('three') && !targetBtn.classList.contains('checked')) {
+    targetBtn.classList.add('checked')
+    twoPlayers.classList.remove('checked')
+    addPlayerForm()
+  }
 }
 
 function initQuestions(totalQuestions) {
@@ -83,6 +101,7 @@ export function initInitialButtons() {
   tutorialCloseBtn.addEventListener('click', hideTutorial)
   nameBtn.addEventListener('click', beginGame)
   questionsToggle.addEventListener('click', toggleQuestions)
+  playerToggle.addEventListener('click', togglePlayer)
 }
 
 export function removeInitialButtons() {
@@ -90,6 +109,7 @@ export function removeInitialButtons() {
   tutorialCloseBtn.removeEventListener('click', hideTutorial)
   nameBtn.removeEventListener('click', beginGame)
   questionsToggle.removeEventListener('click', toggleQuestions)
+  playerToggle.removeEventListener('click', togglePlayer)
 }
 
 function getGameplayElements() {

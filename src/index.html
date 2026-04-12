@@ -42,38 +42,44 @@
     </header>
     <section class="content">
       <div class="initial">
-        <div class="player one">
-          <svg
-            class="player one icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="-1 -1 8 8"
-            width="15rem"
-          >
-            <path
-              d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z"
-              stroke="#a7a7a7"
-              stroke-width="0"
-            />
-          </svg>
-          <input type="text" class="player one name" placeholder="Player 1's name" />
-        </div>
-        <div class="player two">
-          <svg
-            class="player two icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="-1 -1 8 8"
-            width="15rem"
-          >
-            <path
-              d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z"
-              stroke="#a7a7a7"
-              stroke-width="0"
-            />
-          </svg>
-          <input type="text" class="player two name" placeholder="Player 2's name" />
+        <div class="player">
+          <div class="player one">
+            <svg
+              class="player one icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-1 -1 8 8"
+              width="15rem"
+            >
+              <path
+                d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z"
+                stroke="#a7a7a7"
+                stroke-width="0"
+              />
+            </svg>
+            <input type="text" class="player one name" placeholder="Player 1's name" />
+          </div>
+          <div class="player two">
+            <svg
+              class="player two icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-1 -1 8 8"
+              width="15rem"
+            >
+              <path
+                d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z"
+                stroke="#a7a7a7"
+                stroke-width="0"
+              />
+            </svg>
+            <input type="text" class="player two name" placeholder="Player 2's name" />
+          </div>
         </div>
         <div class="row-2">
           <button type="button" class="tutorial-button">How to play?</button>
+          <div class="player-toggle">
+            <button type="button" class="two players checked">2P</button>
+            <button type="button" class="three players">3P</button>
+          </div>
           <div class="questions-toggle">
             <button type="button" class="five questions">5 Questions</button>
             <button type="button" class="ten questions checked">10 Questions</button>

@@ -10,6 +10,27 @@ import { determineWinner, player1, player2 } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
 
+export function addPlayerForm() {
+  const player = document.querySelector('.player')
+  const playerTemplate = document.querySelector('.player.two')
+  const player3 = playerTemplate.cloneNode(true)
+  player3.classList.remove('two')
+  player3.classList.add('three')
+  const player3Icon = player3.querySelector('.icon')
+  player3Icon.classList.remove('two')
+  player3Icon.classList.add('three')
+  const player3Name = player3.querySelector('.name')
+  player3Name.classList.remove('two')
+  player3Name.classList.add('three')
+  player3Name.placeholder = "Player 3's name"
+  player.appendChild(player3)
+}
+
+export function removePlayerForm() {
+  const player3 = document.querySelector('.player.three')
+  player3.remove()
+}
+
 export function hideInitial() {
   tutorialBtn.classList.add('hidden')
   initial.classList.add('hidden')

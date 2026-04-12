@@ -106,47 +106,55 @@ header {
   justify-content: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 3fr 0.5fr 0.5fr;
-  width: 25rem;
+  width: fit-content;
   gap: 1rem;
 }
 
-.player.one {
-  grid-column: 1;
+.player {
+  grid-column: 1 / -1;
   grid-row: 1;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.player.one, .player.two, .player.three {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0;
 }
 
 .one.icon {
   fill: var(--player-1);
 }
 
-.player.two {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.one.name {
+  border-color: var(--player-1);
 }
 
 .two.icon {
   fill: var(--player-2);
 }
 
-.name {
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
-  border: 0.5rem solid var(--button-border);
-  font-size: 2rem;
-}
-
-.one.name {
-  border-color: var(--player-1);
-}
-
 .two.name {
   border-color: var(--player-2);
+}
+
+.three.icon {
+  fill: var(--player-3);
+}
+
+.three.name {
+  border-color: var(--player-3);
+}
+
+.name {
+  border-radius: 2rem;
+  padding: 0.5rem;
+  width: 20rem;
+  border: 0.5rem solid var(--button-border);
+  font-size: 2rem;
 }
 
 .row-2 {
@@ -155,6 +163,7 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1rem;
 }
 
 .tutorial-button {
@@ -165,26 +174,26 @@ header {
   background-color: var(--button-background);
 }
 
-.questions {
+.questions, .players {
   padding: 1rem 2rem;
   font-size: 2rem;
   border: 0.5rem solid var(--button-border);
   background-color: var(--button-background);
 }
 
-.five.questions {
+.five.questions, .two.players {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
   margin-right: -0.5rem;
 }
 
-.ten.questions {
+.ten.questions, .three.players {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   margin-left: -0.5rem;
 }
 
-.questions.checked {
+.questions.checked, .players.checked {
   background-color: white;
   padding: 1.5rem 2.5rem;
 }
