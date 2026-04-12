@@ -1,15 +1,14 @@
 import { transition, showResult, updateScoreIcon, showQuestion } from './display.js'
-import { player1, player2 } from './player.js'
+import { allPlayers } from './player.js'
 let currentScore = 0
 let timeTaken = 0
 let startTime = 0
 let endTime = 0
 export let totalQuestions = 10
-export let isPlayer1Turn = false
+export let currentPlayerIndex = 0
 let answer
 let question = 0
 export function newRound() {
-  isPlayer1Turn = !isPlayer1Turn
   question = 0
   currentScore = 0
   timeTaken = 0
@@ -75,13 +74,13 @@ export function checkAnswer(inputAnswer) {
 export function endRound() {
   getEndTime()
   calcCurrentTime()
-  if (isPlayer1Turn === true) {
-    player1.roundScore = currentScore
-    player1.roundTime = timeTaken
-    transition(isPlayer1Turn)
-  } else if (isPlayer1Turn === false) {
-    player2.roundScore = currentScore
-    player2.roundTime = timeTaken
+  allPlayers[currentPlayerIndex].roundScore = currentScore
+  allPlayers[currentPlayerIndex].roundTime = timeTaken
+  if (currentPlayerIndex >= (allPlayers.length - 1)) {
+    // this means end of array has been reached
     showResult()
+  } else {
+    currentPlayerIndex++
+    transition(currentPlayerIndex)
   }
 }

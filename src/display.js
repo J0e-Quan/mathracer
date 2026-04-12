@@ -6,7 +6,7 @@ import {
   detectNextPlayer,
   detectNextRound
 } from './input.js'
-import { determineWinner, player1, player2 } from './player.js'
+import { determineWinner, allPlayers } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
 
@@ -23,6 +23,7 @@ export function addPlayerForm() {
   player3Name.classList.remove('two')
   player3Name.classList.add('three')
   player3Name.placeholder = "Player 3's name"
+  player3Name.value = ''
   player.appendChild(player3)
 }
 
@@ -36,13 +37,8 @@ export function hideInitial() {
   initial.classList.add('hidden')
   removeInitialButtons()
 }
-export function newGame(isPlayer1Turn, totalQuestions) {
-  let currentPlayerName
-  if (isPlayer1Turn === true) {
-    currentPlayerName = player1.name
-  } else if (isPlayer1Turn === false) {
-    currentPlayerName = player2.name
-  }
+export function newGame(currentPlayerIndex, totalQuestions) {
+  const currentPlayerName = allPlayers[currentPlayerIndex].name
   const content = document.querySelector('.content')
   const game = document.createElement('div')
   game.classList.add('game')
@@ -95,10 +91,12 @@ export function newGame(isPlayer1Turn, totalQuestions) {
   currentPlayerIcon.classList.add('player', 'info', 'icon')
   currentPlayerIcon.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
-  if (isPlayer1Turn === true) {
+  if (currentPlayerIndex === 0) {
     currentPlayerIcon.classList.add('one')
-  } else if (isPlayer1Turn === false) {
+  } else if (currentPlayerIndex === 1) {
     currentPlayerIcon.classList.add('two')
+  } else if (currentPlayerIndex === 2) {
+    currentPlayerIcon.classList.add('three')
   }
   currentPlayerInfo.appendChild(currentPlayerIcon)
   game.appendChild(currentPlayerInfo)
@@ -125,7 +123,7 @@ function removeGame() {
   }
 }
 
-export function transition(isPlayer1Turn) {
+export function transition(currentPlayerIndex) {
   removeGameplayButtons()
   removeGame()
   const content = document.querySelector('.content')
@@ -133,20 +131,17 @@ export function transition(isPlayer1Turn) {
   transitionCard.classList.add('transitionCard')
   const transitionTitle = document.createElement('h2')
   transitionTitle.classList.add('transitionTitle')
-  let displayName
-  if (isPlayer1Turn === false) {
-    displayName = player1.name
-  } else if (isPlayer1Turn === true) {
-    displayName = player2.name
-  }
+  const displayName = allPlayers[currentPlayerIndex].name
   transitionTitle.textContent =
     'Time for ' + displayName + " to play! Press the button below when you're ready!"
   transitionCard.appendChild(transitionTitle)
   const transitionPlayerIcon = document.createElement('div')
-  if (isPlayer1Turn === false) {
+  if (currentPlayerIndex === 0) {
     transitionPlayerIcon.classList.add('player', 'one', 'icon')
-  } else if (isPlayer1Turn === true) {
+  } else if (currentPlayerIndex === 1) {
     transitionPlayerIcon.classList.add('player', 'two', 'icon')
+  } else if (currentPlayerIndex === 2) {
+    transitionPlayerIcon.classList.add('player', 'three', 'icon')
   }
   transitionPlayerIcon.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
@@ -171,9 +166,8 @@ export function showResult() {
   removeGame()
   const content = document.querySelector('.content')
   const resultsCard = document.createElement('div')
-  let showPlayer1Results = true
   resultsCard.classList.add('resultsCard')
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < allPlayers.length; i++) {
     const playerResults = document.createElement('div')
     playerResults.classList.add('playerResults')
     const playerName = document.createElement('h2')
@@ -194,24 +188,21 @@ export function showResult() {
     playerWins.classList.add('playerWins')
     playerResults.appendChild(playerWins)
     resultsCard.appendChild(playerResults)
-    if (showPlayer1Results === true) {
+    const currentPlayer = allPlayers[i]
+    if (i === 0) {
       playerResults.classList.add('one')
-      playerName.textContent = player1.name
       playerIcon.classList.add('one')
-      playerScore.textContent = 'Correct answers: ' + player1.roundScore
-      playerTime.textContent = 'Time taken: ' + player1.roundTime + ' seconds'
-      playerWins.textContent = 'Rounds won: ' + player1.score
-      showPlayer1Results = !showPlayer1Results
-      continue
-    } else if (showPlayer1Results === false) {
-      playerResults.classList.add('two')
-      playerName.textContent = player2.name
-      playerIcon.classList.add('two')
-      playerScore.textContent = 'Correct answers: ' + player2.roundScore
-      playerTime.textContent = 'Time taken: ' + player2.roundTime + ' seconds'
-      playerWins.textContent = 'Rounds won: ' + player2.score
-      continue
+    } else if (i === 1) {
+    playerResults.classList.add('two')
+    playerIcon.classList.add('two')
+    } else if (i === 2) {
+    playerResults.classList.add('three')
+    playerIcon.classList.add('three')
     }
+    playerName.textContent = currentPlayer.name
+    playerScore.textContent = 'Correct answers: ' + currentPlayer.roundScore
+    playerTime.textContent = 'Time taken: ' + currentPlayer.roundTime + ' seconds'
+    playerWins.textContent = 'Rounds won: ' + currentPlayer.score
   }
   content.appendChild(resultsCard)
   const playAgain = document.createElement('button')
@@ -227,13 +218,18 @@ function showWinner(winner) {
   if (winner === 'player1') {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
-    updateInstruction(player1.name + ' wins this round!')
+    updateInstruction(allPlayers[0].name + ' wins this round!')
     updatePlayerWins()
   } else if (winner === 'player2') {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
-    updateInstruction(player2.name + ' wins this round!')
+    updateInstruction(allPlayers[1].name + ' wins this round!')
     updatePlayerWins()
+  } else if (winner === 'player3') {
+    const winResults = document.querySelector('.playerResults.three')
+    winResults.classList.add('winner')
+    updateInstruction(allPlayers[2].name + ' wins this round!')
+    updatePlayerWins()    
   } else if (winner === 'tie') {
     const winResults = document.querySelectorAll('.playerResults')
     winResults.forEach((element) => {
@@ -255,8 +251,8 @@ export function removeResults() {
 function updatePlayerWins() {
   const player1Wins = document.querySelector('.one .playerWins')
   const player2Wins = document.querySelector('.two .playerWins')
-  player1Wins.textContent = 'Rounds won: ' + player1.score
-  player2Wins.textContent = 'Rounds won: ' + player2.score
+  player1Wins.textContent = 'Rounds won: ' + allPlayers[0].score
+  player2Wins.textContent = 'Rounds won: ' + allPlayers[1].score
 }
 
 const instruction = document.querySelector('.instruction')

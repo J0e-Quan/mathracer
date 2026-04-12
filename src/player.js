@@ -1,16 +1,27 @@
 export function setPlayerNames() {
   const player1NameInput = document.querySelector('.one.name')
   const player2NameInput = document.querySelector('.two.name')
-  player1name = player1NameInput.value
+  const player3NameInput = document.querySelector('.three.name')
+  let player1name = player1NameInput.value
   if (player1name === '' || player1name === null) {
     player1name = 'Player 1'
   }
-  player2name = player2NameInput.value
+  player1 = createPlayer(player1name)
+  allPlayers.push(player1)
+  let player2name = player2NameInput.value
   if (player2name === '' || player2name === null) {
     player2name = 'Player 2'
   }
-  player1 = createPlayer(player1name)
   player2 = createPlayer(player2name)
+  allPlayers.push(player2)
+  if (player3NameInput !== null) {
+    let player3name = player3NameInput.value
+    if (player3name === '' || player3name === null) {
+      player3name = 'Player 3'
+    }
+    player3 = createPlayer(player3name)
+    allPlayers.push(player3)
+  }
 }
 
 export function determineWinner() {
@@ -68,7 +79,7 @@ export function createPlayer(playerName) {
   }
 }
 
-let player1name
-let player2name
 export let player1
 export let player2
+export let player3
+export const allPlayers = []

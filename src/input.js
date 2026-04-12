@@ -5,8 +5,8 @@ import {
   getStartTime,
   newRound,
   updateTotalQuestions,
-  isPlayer1Turn,
-  totalQuestions
+  currentPlayerIndex,
+  totalQuestions,
 } from './game.js'
 import {
   questionLength,
@@ -93,7 +93,7 @@ function toggleQuestions(btn) {
 function beginGame() {
   setPlayerNames()
   hideInitial()
-  transition(isPlayer1Turn)
+  transition(currentPlayerIndex)
 }
 
 export function initInitialButtons() {
@@ -171,7 +171,7 @@ export function detectNextPlayer() {
     () => {
       removeTransition()
       newRound()
-      newGame(isPlayer1Turn, totalQuestions)
+      newGame(currentPlayerIndex, totalQuestions)
       getStartTime()
     },
     { once: true }
@@ -184,7 +184,7 @@ export function detectNextRound() {
     'click',
     () => {
       removeResults()
-      transition(isPlayer1Turn)
+      transition(currentPlayerIndex)
     },
     { once: true }
   )
