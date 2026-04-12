@@ -7,7 +7,7 @@ import {
   updateTotalQuestions,
   currentPlayerIndex,
   totalQuestions,
-  resetCurrentPlayerIndex,
+  resetCurrentPlayerIndex
 } from './game.js'
 import {
   questionLength,

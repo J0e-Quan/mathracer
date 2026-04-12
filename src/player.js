@@ -28,34 +28,36 @@ export function determineWinner() {
   const winner = []
   const scoreArr = allPlayers.toSorted((a, b) => {
     // descending order so highest score comes first
-    return b.roundScore - a.roundScore     
+    return b.roundScore - a.roundScore
   })
   if (checkTie(scoreArr, 'roundScore') === false) {
-    console.log("win by scoring highest: " + scoreArr[0].playerNumber)
     winner.push(scoreArr[0].playerNumber)
     scoreArr[0].incrementScore()
   } else {
-      // if there are identical scores, get best scoring player first to prioritise score
-      const bestScore = scoreArr[0].roundScore
-      // if all players score 0, show easter egg msg and skip checks
-      if (bestScore === 0) {
-        return winner
-      }
-      // filter out only players with the same best score then sort them by time
-      const tiedScore = (allPlayers.filter((player) => {
+    // if there are identical scores, get best scoring player first to prioritise score
+    const bestScore = scoreArr[0].roundScore
+    // if all players score 0, show easter egg msg and skip checks
+    if (bestScore === 0) {
+      return winner
+    }
+    // filter out only players with the same best score then sort them by time
+    const tiedScore = allPlayers
+      .filter((player) => {
         return player.roundScore === bestScore
-      })).sort((a, b) => {
+      })
+      .sort((a, b) => {
         return a.roundTime - b.roundTime
       })
-      // push players with the same best score and best time to winners array
-      const bestTime = tiedScore[0].roundTime
-      tiedScore.forEach((player) => {
-        if (player.roundTime === bestTime) {
-          console.log("win by scoring fastest and highest: "+player.playerNumber)
-          winner.push(player.playerNumber)
-        }
-      })
-    }
+    // push players with the same best score and best time to winners array
+    const bestTime = tiedScore[0].roundTime
+    tiedScore.forEach((player) => {
+      if (player.roundTime === bestTime) {
+        console.log('win by scoring fastest and highest: ' + player.playerNumber)
+        winner.push(player.playerNumber)
+        player.incrementScore()
+      }
+    })
+  }
   return winner
 }
 

@@ -81,7 +81,7 @@ export function endRound() {
   calcCurrentTime()
   allPlayers[currentPlayerIndex].roundScore = currentScore
   allPlayers[currentPlayerIndex].roundTime = timeTaken
-  if (currentPlayerIndex >= (allPlayers.length - 1)) {
+  if (currentPlayerIndex >= allPlayers.length - 1) {
     // this means end of array has been reached
     showResult()
   } else {

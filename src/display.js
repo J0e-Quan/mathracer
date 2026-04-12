@@ -193,11 +193,11 @@ export function showResult() {
       playerResults.classList.add('one')
       playerIcon.classList.add('one')
     } else if (i === 1) {
-    playerResults.classList.add('two')
-    playerIcon.classList.add('two')
+      playerResults.classList.add('two')
+      playerIcon.classList.add('two')
     } else if (i === 2) {
-    playerResults.classList.add('three')
-    playerIcon.classList.add('three')
+      playerResults.classList.add('three')
+      playerIcon.classList.add('three')
     }
     playerName.textContent = currentPlayer.name
     playerScore.textContent = 'Correct answers: ' + currentPlayer.roundScore
@@ -234,11 +234,11 @@ function showWinner(winner) {
       const winResults = document.querySelector('.playerResults.three')
       winResults.classList.add('winner')
       updateInstruction(allPlayers[2].name + ' wins this round!')
-      updatePlayerWins()    
+      updatePlayerWins()
     }
     if (winner.length > 1) {
       console.log('tie!!')
-      updateInstruction("We have a tie!")
+      updateInstruction('We have a tie!')
       updatePlayerWins()
     }
   })

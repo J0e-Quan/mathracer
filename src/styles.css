@@ -119,7 +119,9 @@ header {
   justify-content: center;
 }
 
-.player.one, .player.two, .player.three {
+.player.one,
+.player.two,
+.player.three {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,26 +178,30 @@ header {
   background-color: var(--button-background);
 }
 
-.questions, .players {
+.questions,
+.players {
   padding: 1rem 2rem;
   font-size: 2rem;
   border: 0.5rem solid var(--button-border);
   background-color: var(--button-background);
 }
 
-.five.questions, .two.players {
+.five.questions,
+.two.players {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
   margin-right: -0.5rem;
 }
 
-.ten.questions, .three.players {
+.ten.questions,
+.three.players {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   margin-left: -0.5rem;
 }
 
-.questions.checked, .players.checked {
+.questions.checked,
+.players.checked {
   background-color: white;
   padding: 1.5rem 2.5rem;
   font-weight: 700;
