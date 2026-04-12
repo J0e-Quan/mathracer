@@ -8,6 +8,11 @@ export let totalQuestions = 10
 export let currentPlayerIndex = 0
 let answer
 let question = 0
+
+export function resetCurrentPlayerIndex() {
+  currentPlayerIndex = 0
+}
+
 export function newRound() {
   question = 0
   currentScore = 0

@@ -25,23 +25,37 @@ export function setPlayerNames() {
 }
 
 export function determineWinner() {
+  const winner = []
   const scoreArr = allPlayers.toSorted((a, b) => {
     return b.roundScore - a.roundScore     // descending order so highest score comes first
   })
   if (checkTie(scoreArr, 'roundScore') === false) {
     console.log('winner: ' + scoreArr[0].playerNumber)
-    return scoreArr[0].playerNumber 
+    winner.push(scoreArr[0].playerNumber)
+    scoreArr[0].incrementScore()
   } else {
     const timeArr = allPlayers.toSorted((a, b) => {
       return a.roundTime - b.roundTime     // ascending order so shortest time comes first
     })
     if (checkTie(timeArr, 'roundTime') === false) {
       console.log('winner: ' + timeArr[0].playerNumber)
-      return timeArr[0].playerNumber 
+      winner.push(timeArr[0].playerNumber)
+      timeArr[0].incrementScore()
     } else {
-      // identify tied players
+      // get players with same score as highest scoring player
+      // get players with same time as highest scoring player
+      // in a tie, the highest player in scoreArr and timeArr will be the same player
+      const highestScore = scoreArr[0].roundScore
+      const highestTime = timeArr[0].roundTime
+      allPlayers.forEach((player) => {
+        if (player.roundScore === highestScore && player.roundTime === highestTime) {
+          winner.push(player)
+          player.incrementScore()
+        }
+      })
     }
   }
+  return winner
 }
 
 function checkTie(inputArr, targetProperty) {

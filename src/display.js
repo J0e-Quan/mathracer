@@ -215,30 +215,33 @@ export function showResult() {
 }
 
 function showWinner(winner) {
-  if (winner === 1) {
-    const winResults = document.querySelector('.playerResults.one')
-    winResults.classList.add('winner')
-    updateInstruction(allPlayers[0].name + ' wins this round!')
-    updatePlayerWins()
-  } else if (winner === 2) {
-    const winResults = document.querySelector('.playerResults.two')
-    winResults.classList.add('winner')
-    updateInstruction(allPlayers[1].name + ' wins this round!')
-    updatePlayerWins()
-  } else if (winner === 3) {
-    const winResults = document.querySelector('.playerResults.three')
-    winResults.classList.add('winner')
-    updateInstruction(allPlayers[2].name + ' wins this round!')
-    updatePlayerWins()    
-  } else if (winner === 'tie') {
-    const winResults = document.querySelectorAll('.playerResults')
-    winResults.forEach((element) => {
-      element.classList.add('winner')
-    })
-    updateInstruction("It's a tie!")
-  } else if (winner === 'zero') {
-    updateInstruction("It can't be that hard...")
-  }
+  winner.forEach((num) => {
+    if (num === 1) {
+      console.log(1)
+      const winResults = document.querySelector('.playerResults.one')
+      winResults.classList.add('winner')
+      updateInstruction(allPlayers[0].name + ' wins this round!')
+      updatePlayerWins()
+    } else if (num === 2) {
+      console.log(2)
+      const winResults = document.querySelector('.playerResults.two')
+      winResults.classList.add('winner')
+      updateInstruction(allPlayers[1].name + ' wins this round!')
+      updatePlayerWins()
+    } else if (num === 3) {
+      const winResults = document.querySelector('.playerResults.three')
+      winResults.classList.add('winner')
+      updateInstruction(allPlayers[2].name + ' wins this round!')
+      updatePlayerWins()    
+    }
+    if (winner.length > 1) {
+      updateInstruction("It's a tie!")
+      updatePlayerWins()
+    } else if (winner.length === 0) {
+      updateInstruction("It can't be that hard...")
+      updatePlayerWins()
+    }
+  })
 }
 
 export function removeResults() {
@@ -251,8 +254,12 @@ export function removeResults() {
 function updatePlayerWins() {
   const player1Wins = document.querySelector('.one .playerWins')
   const player2Wins = document.querySelector('.two .playerWins')
+  const player3Wins = document.querySelector('.three .playerWins')
   player1Wins.textContent = 'Rounds won: ' + allPlayers[0].score
   player2Wins.textContent = 'Rounds won: ' + allPlayers[1].score
+  if (player3Wins !== null) {
+    player3Wins.textContent = 'Rounds won: ' + allPlayers[2].score
+  }
 }
 
 const instruction = document.querySelector('.instruction')

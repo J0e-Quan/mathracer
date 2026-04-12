@@ -7,6 +7,7 @@ import {
   updateTotalQuestions,
   currentPlayerIndex,
   totalQuestions,
+  resetCurrentPlayerIndex,
 } from './game.js'
 import {
   questionLength,
@@ -185,6 +186,7 @@ export function detectNextRound() {
     () => {
       removeResults()
       newRound()
+      resetCurrentPlayerIndex()
       transition(currentPlayerIndex)
     },
     { once: true }
