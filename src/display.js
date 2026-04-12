@@ -215,17 +215,17 @@ export function showResult() {
 }
 
 function showWinner(winner) {
-  if (winner === 'player1') {
+  if (winner === 1) {
     const winResults = document.querySelector('.playerResults.one')
     winResults.classList.add('winner')
     updateInstruction(allPlayers[0].name + ' wins this round!')
     updatePlayerWins()
-  } else if (winner === 'player2') {
+  } else if (winner === 2) {
     const winResults = document.querySelector('.playerResults.two')
     winResults.classList.add('winner')
     updateInstruction(allPlayers[1].name + ' wins this round!')
     updatePlayerWins()
-  } else if (winner === 'player3') {
+  } else if (winner === 3) {
     const winResults = document.querySelector('.playerResults.three')
     winResults.classList.add('winner')
     updateInstruction(allPlayers[2].name + ' wins this round!')
