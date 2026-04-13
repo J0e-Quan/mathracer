@@ -33,6 +33,7 @@ const tenQuestions = document.querySelector('.ten.questions')
 let numpad
 let questionBox
 const settings = retrieveStorage()
+initPlayer(settings.numberOfPlayers)
 initQuestions(settings.totalQuestions)
 
 function showTutorial() {
@@ -45,6 +46,20 @@ function hideTutorial() {
   initial.classList.remove('hidden')
   tutorialBtn.classList.remove('hidden')
   tutorial.classList.add('hidden')
+}
+
+function initPlayer(numberOfPlayers) {
+  const twoPlayers = document.querySelector('.two.players')
+  const threePlayers = document.querySelector('.three.players')
+  if (numberOfPlayers === 2) {
+    twoPlayers.classList.add('checked')
+    threePlayers.classList.remove('checked')
+    addPlayerForm()
+  } else if (numberOfPlayers === 3) {
+    threePlayers.classList.add('checked')
+    twoPlayers.classList.remove('checked')
+    removePlayerForm()
+  }
 }
 
 function togglePlayer(btn) {
