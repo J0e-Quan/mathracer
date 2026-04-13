@@ -73,6 +73,22 @@ button {
   --button-background-hover: rgb(241, 241, 241);
 }
 
+:root.dark {
+  --background: rgb(0, 0, 0);
+  --accent-1: rgb(35, 35, 35);
+  --button-border: rgb(63, 63, 63);
+  --button-background: rgb(187, 187, 187);
+  --button-background-hover: rgb(241, 241, 241);
+}
+
+:root.light {
+  --background: rgb(255, 255, 255);
+  --accent-1: rgb(200, 200, 200);
+  --button-border: rgb(63, 63, 63);
+  --button-background: rgb(230, 230, 230);
+  --button-background-hover: rgb(180, 180, 180);
+}
+
 /*      ^^^^^^^^^^
    MATHRACER THEMES END */
 

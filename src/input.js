@@ -17,7 +17,8 @@ import {
   removeResults,
   hideInitial,
   addPlayerForm,
-  removePlayerForm
+  removePlayerForm,
+  updateTheme
 } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
@@ -33,6 +34,7 @@ const threePlayers = document.querySelector('.three.players')
 const questionsToggle = document.querySelector('.questions-toggle')
 const fiveQuestions = document.querySelector('.five.questions')
 const tenQuestions = document.querySelector('.ten.questions')
+const themeToggle = document.querySelector('.theme-toggle')
 let numpad
 let questionBox
 const settings = retrieveStorage()
@@ -121,6 +123,21 @@ function toggleQuestions(btn) {
   }
 }
 
+function initThemes() {
+
+}
+
+function toggleThemes(btn) {
+  const targetBtn = btn.target
+  const themes = document.querySelectorAll('button.theme')
+  themes.forEach((theme) => {
+    theme.classList.remove('checked')
+  })
+  targetBtn.classList.add('checked')
+  updateTheme(targetBtn.textContent.toLowerCase())
+  updateStorage('theme', targetBtn.textContent.toLowerCase())
+}
+
 function beginGame() {
   setPlayerNames()
   hideInitial()
@@ -135,6 +152,7 @@ export function initInitialButtons() {
   nameBtn.addEventListener('click', beginGame)
   questionsToggle.addEventListener('click', toggleQuestions)
   playerToggle.addEventListener('click', togglePlayer)
+  themeToggle.addEventListener('click', toggleThemes)
 }
 
 export function removeInitialButtons() {
@@ -145,6 +163,7 @@ export function removeInitialButtons() {
   nameBtn.removeEventListener('click', beginGame)
   questionsToggle.removeEventListener('click', toggleQuestions)
   playerToggle.removeEventListener('click', togglePlayer)
+  themeToggle.removeEventListener('click', toggleThemes)
 }
 
 function getGameplayElements() {

@@ -34,6 +34,12 @@ export function removePlayerForm() {
   }
 }
 
+export function updateTheme(theme) {
+  const root = document.documentElement
+  // className is used instead of classList because it overwrites all classes
+  root.className = theme
+}
+
 export function hideInitial() {
   removeInitialButtons()
   tutorialBtn.remove()
