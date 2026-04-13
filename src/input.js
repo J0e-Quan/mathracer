@@ -29,8 +29,6 @@ const settingsMenu = document.querySelector('.settings-menu')
 const initial = document.querySelector('.initial')
 const nameBtn = document.querySelector('.submit-name')
 const playerToggle = document.querySelector('.players-toggle')
-const twoPlayers = document.querySelector('.two.players')
-const threePlayers = document.querySelector('.three.players')
 const questionsToggle = document.querySelector('.questions-toggle')
 const fiveQuestions = document.querySelector('.five.questions')
 const tenQuestions = document.querySelector('.ten.questions')
@@ -74,22 +72,26 @@ function initPlayer(numberOfPlayers) {
   } else if (numberOfPlayers === 3) {
     threePlayers.classList.add('checked')
     twoPlayers.classList.remove('checked')
-    addPlayerForm()
+    addPlayerForm(3)
   }
 }
 
 function togglePlayer(btn) {
   const targetBtn = btn.target
+  const players = document.querySelectorAll('button.players')
+  players.forEach((player) => {
+    player.classList.remove('checked')
+  })
+  targetBtn.classList.add('checked')
   if (targetBtn.classList.contains('two') && !targetBtn.classList.contains('checked')) {
-    targetBtn.classList.add('checked')
-    threePlayers.classList.remove('checked')
     removePlayerForm()
     updateStorage('numberOfPlayers', 2)
   } else if (targetBtn.classList.contains('three') && !targetBtn.classList.contains('checked')) {
-    targetBtn.classList.add('checked')
-    twoPlayers.classList.remove('checked')
-    addPlayerForm()
+    addPlayerForm(3)
     updateStorage('numberOfPlayers', 3)
+  } else if (targetBtn.classList.contains('four') && !targetBtn.classList.contains('checked')) {
+    addPlayerForm(4)
+    updateStorage('numberOfPlayers', 4)
   }
 }
 

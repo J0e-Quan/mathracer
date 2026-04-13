@@ -10,21 +10,30 @@ import { determineWinner, allPlayers } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
 
-export function addPlayerForm() {
-  const player = document.querySelector('.player')
-  const playerTemplate = document.querySelector('.player.two')
-  const player3 = playerTemplate.cloneNode(true)
-  player3.classList.remove('two')
-  player3.classList.add('three')
-  const player3Icon = player3.querySelector('.icon')
-  player3Icon.classList.remove('two')
-  player3Icon.classList.add('three')
-  const player3Name = player3.querySelector('.name')
-  player3Name.classList.remove('two')
-  player3Name.classList.add('three')
-  player3Name.placeholder = "Player 3's name"
-  player3Name.value = ''
-  player.appendChild(player3)
+export function addPlayerForm(totalPlayers) {
+  const players = document.querySelector('.player')
+  for (let i = 2; i <= totalPlayers; i++) {
+    const playerTemplate = document.querySelector('.player.two')
+    const player = playerTemplate.cloneNode(true)
+    player.classList.remove('two')
+    const playerIcon = player.querySelector('.icon')
+    playerIcon.classList.remove('two')
+    const playerName = player.querySelector('.name')
+    playerName.classList.remove('two')
+    playerName.value = ''
+    if (i === 2) {
+      player.classList.add('three')
+      playerIcon.classList.add('three')
+      playerName.classList.add('three')
+      playerName.placeholder = "Player 3's name"
+    } else if (i === 3) {
+      player.classList.add('four')
+      playerIcon.classList.add('four')
+      playerName.classList.add('four')
+      playerName.placeholder = "Player 4's name"      
+    }
+    players.appendChild(player)
+  }
 }
 
 export function removePlayerForm() {
