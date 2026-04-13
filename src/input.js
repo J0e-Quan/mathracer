@@ -21,10 +21,13 @@ import {
 } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
+const settingsCloseBtn = document.querySelector('.close-settings')
+const settingsBtn = document.querySelector('.settings-button')
 const tutorial = document.querySelector('.tutorial')
+const settingsMenu = document.querySelector('.settings-menu')
 const initial = document.querySelector('.initial')
 const nameBtn = document.querySelector('.submit-name')
-const playerToggle = document.querySelector('.player-toggle')
+const playerToggle = document.querySelector('.players-toggle')
 const twoPlayers = document.querySelector('.two.players')
 const threePlayers = document.querySelector('.three.players')
 const questionsToggle = document.querySelector('.questions-toggle')
@@ -46,6 +49,16 @@ function hideTutorial() {
   initial.classList.remove('hidden')
   tutorialBtn.classList.remove('hidden')
   tutorial.classList.add('hidden')
+}
+
+function showSettings() {
+  settingsMenu.classList.remove('hidden')
+  settingsMenu.showModal()
+}
+
+function hideSettings() {
+  settingsMenu.classList.add('hidden')
+  settingsMenu.close()
 }
 
 function initPlayer(numberOfPlayers) {
@@ -116,7 +129,9 @@ function beginGame() {
 
 export function initInitialButtons() {
   tutorialBtn.addEventListener('click', showTutorial)
+  settingsBtn.addEventListener('click', showSettings)
   tutorialCloseBtn.addEventListener('click', hideTutorial)
+  settingsCloseBtn.addEventListener('click', hideSettings)
   nameBtn.addEventListener('click', beginGame)
   questionsToggle.addEventListener('click', toggleQuestions)
   playerToggle.addEventListener('click', togglePlayer)
@@ -124,7 +139,9 @@ export function initInitialButtons() {
 
 export function removeInitialButtons() {
   tutorialBtn.removeEventListener('click', showTutorial)
+  settingsBtn.removeEventListener('click', showSettings)
   tutorialCloseBtn.removeEventListener('click', hideTutorial)
+  settingsCloseBtn.removeEventListener('click', hideSettings)
   nameBtn.removeEventListener('click', beginGame)
   questionsToggle.removeEventListener('click', toggleQuestions)
   playerToggle.removeEventListener('click', togglePlayer)

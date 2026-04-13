@@ -170,7 +170,7 @@ header {
   gap: 1rem;
 }
 
-.tutorial-button {
+.tutorial-button, .settings-button, .close-settings {
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 2rem;
@@ -178,8 +178,65 @@ header {
   background-color: var(--button-background);
 }
 
-.questions,
-.players {
+.settings-menu::backdrop {
+  backdrop-filter: brightness(50%);
+}
+
+.settings-menu {
+  margin: auto;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: var(--background);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.5fr 2fr 2fr;
+}
+
+.settings.title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: center;
+  font-size: 5rem;
+  margin-top: -0.5rem;
+}
+
+.close-settings {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  z-index: 1000;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+h3.title {
+  font-size: 2.5rem;
+}
+
+.players.setting {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.questions.setting {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.theme.setting {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+button.questions,
+button.players,
+button.theme {
   padding: 1rem 2rem;
   font-size: 2rem;
   border: 0.5rem solid var(--button-border);
@@ -187,30 +244,36 @@ header {
 }
 
 .five.questions,
-.two.players {
+.two.players,
+.light.theme {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
   margin-right: -0.5rem;
 }
 
 .ten.questions,
-.three.players {
+.three.players,
+.dark.theme {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   margin-left: -0.5rem;
 }
 
 .questions.checked,
-.players.checked {
+.players.checked,
+.theme.checked {
   background-color: white;
   padding: 1.5rem 2.5rem;
   font-weight: 700;
 }
 
 .tutorial-button:hover,
+.settings-button:hover,
+.close-settings:hover,
 .submit-name:hover,
-.questions:hover:not(.checked),
-.players:hover:not(.checked) {
+button.questions:hover:not(.checked),
+button.players:hover:not(.checked),
+button.theme:hover:not(.checked) {
   background-color: var(--button-background-hover);
 }
 
