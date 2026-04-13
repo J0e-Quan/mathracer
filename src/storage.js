@@ -4,6 +4,7 @@ export function updateStorage(category, value) {
   settings[category] = value
   const settingsString = JSON.stringify(settings)
   localStorage.setItem('settings', settingsString)
+  console.log(settings)
 }
 
 export function retrieveStorage() {

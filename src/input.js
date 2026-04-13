@@ -54,11 +54,11 @@ function initPlayer(numberOfPlayers) {
   if (numberOfPlayers === 2) {
     twoPlayers.classList.add('checked')
     threePlayers.classList.remove('checked')
-    addPlayerForm()
+    removePlayerForm()
   } else if (numberOfPlayers === 3) {
     threePlayers.classList.add('checked')
     twoPlayers.classList.remove('checked')
-    removePlayerForm()
+    addPlayerForm()
   }
 }
 
@@ -68,10 +68,12 @@ function togglePlayer(btn) {
     targetBtn.classList.add('checked')
     threePlayers.classList.remove('checked')
     removePlayerForm()
+    updateStorage('numberOfPlayers', 2)
   } else if (targetBtn.classList.contains('three') && !targetBtn.classList.contains('checked')) {
     targetBtn.classList.add('checked')
     twoPlayers.classList.remove('checked')
     addPlayerForm()
+    updateStorage('numberOfPlayers', 3)
   }
 }
 

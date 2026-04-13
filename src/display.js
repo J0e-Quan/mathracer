@@ -29,7 +29,9 @@ export function addPlayerForm() {
 
 export function removePlayerForm() {
   const player3 = document.querySelector('.player.three')
-  player3.remove()
+  if (player3 !== null) {
+    player3.remove()
+  }
 }
 
 export function hideInitial() {
