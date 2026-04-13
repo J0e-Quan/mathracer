@@ -209,7 +209,8 @@ header {
 
 .tutorial-button:hover,
 .submit-name:hover,
-.questions:hover:not(.checked) {
+.questions:hover:not(.checked),
+.players:hover:not(.checked) {
   background-color: var(--button-background-hover);
 }
 
