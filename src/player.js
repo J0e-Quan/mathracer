@@ -2,6 +2,7 @@ export function setPlayerNames() {
   const player1NameInput = document.querySelector('.one.name')
   const player2NameInput = document.querySelector('.two.name')
   const player3NameInput = document.querySelector('.three.name')
+  const player4NameInput = document.querySelector('.four.name')
   let player1name = player1NameInput.value
   if (player1name === '' || player1name === null) {
     player1name = 'Player 1'
@@ -21,6 +22,14 @@ export function setPlayerNames() {
     }
     const player3 = createPlayer(player3name, 3)
     allPlayers.push(player3)
+  }
+  if (player4NameInput !== '' && player4NameInput !== null) {
+    let player4name = player4NameInput.value
+    if (player4name === '' || player4name === null) {
+      player4name = 'Player 3'
+    }
+    const player4 = createPlayer(player4name, 4)
+    allPlayers.push(player4)
   }
 }
 
