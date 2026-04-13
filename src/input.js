@@ -40,6 +40,7 @@ let questionBox
 const settings = retrieveStorage()
 initPlayer(settings.numberOfPlayers)
 initQuestions(settings.totalQuestions)
+initThemes(settings.theme)
 
 function showTutorial() {
   initial.classList.add('hidden')
@@ -123,8 +124,18 @@ function toggleQuestions(btn) {
   }
 }
 
-function initThemes() {
-
+function initThemes(theme) {
+  const themes = document.querySelectorAll('button.theme')
+  themes.forEach((theme) => {
+    theme.classList.remove('checked')
+  })
+  const targetClassList = theme + ' theme'
+  for (const theme of themes) {
+    if (theme.classList.value === targetClassList) {
+      theme.classList.add('checked')
+      updateTheme(theme.textContent.toLowerCase())
+    }
+  }
 }
 
 function toggleThemes(btn) {
