@@ -215,11 +215,25 @@ header {
   padding: 1rem;
   border-radius: 2rem;
   background-color: var(--accent-1);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1.5fr 2fr 2fr;
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
   border: none;
   box-shadow: 0 16px 16px;
+}
+
+.settings.header {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.all-settings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .settings.title {
@@ -234,7 +248,7 @@ header {
   grid-column: 2;
   grid-row: 1;
   justify-self: end;
-  align-self: start;
+  width: fit-content;
   z-index: 1000;
 }
 
