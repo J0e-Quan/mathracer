@@ -46,6 +46,7 @@ h5,
 h6 {
   font-family: 'Inter', sans-serif;
   font-weight: 200;
+  color: var(--ui-text);
 }
 
 input,
@@ -54,6 +55,7 @@ button {
   border: none;
   background-color: none;
   outline: none;
+  color: var(--button-text);
 }
 
 :root {
@@ -70,23 +72,32 @@ button {
   --accent-1: rgb(19, 81, 148);
   --button-border: rgb(63, 63, 63);
   --button-background: rgb(187, 187, 187);
+  --button-background-checked: rgb(255, 255, 255);
   --button-background-hover: rgb(241, 241, 241);
+  --button-text: rgb(0, 0, 0);
+  --ui-text: rgb(255, 255, 255);
 }
 
 :root.dark {
   --background: rgb(0, 0, 0);
   --accent-1: rgb(35, 35, 35);
-  --button-border: rgb(63, 63, 63);
-  --button-background: rgb(187, 187, 187);
-  --button-background-hover: rgb(241, 241, 241);
+  --button-border: rgb(200, 200, 200);
+  --button-background: rgb(20, 20, 20);
+  --button-background-checked: rgb(150, 150, 150);
+  --button-background-hover: rgb(60, 60, 60);
+  --button-text: rgb(255, 255, 255);
+  --ui-text: rgb(255, 255, 255);
 }
 
 :root.light {
   --background: rgb(255, 255, 255);
   --accent-1: rgb(200, 200, 200);
-  --button-border: rgb(63, 63, 63);
+  --button-border: rgb(0, 0, 0);
   --button-background: rgb(230, 230, 230);
+  --button-background-checked: rgb(255, 255, 255);
   --button-background-hover: rgb(180, 180, 180);
+  --button-text: rgb(0, 0, 0);
+  --ui-text: rgb(0, 0, 0);
 }
 
 /*      ^^^^^^^^^^
@@ -111,9 +122,8 @@ header {
 
 .instruction {
   padding: 1rem 2rem;
-  border: 0.5rem solid white;
+  border: 0.5rem solid var(--ui-text);
   border-radius: 2rem;
-  color: white;
 }
 
 .initial {
@@ -202,10 +212,12 @@ header {
   margin: auto;
   padding: 1rem;
   border-radius: 2rem;
-  background-color: var(--background);
+  background-color: var(--accent-1);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1.5fr 2fr 2fr;
+  border: none;
+  box-shadow: 0 16px 16px;
 }
 
 .settings.title {
@@ -278,7 +290,7 @@ button.theme {
 .questions.checked,
 .players.checked,
 .theme.checked {
-  background-color: white;
+  background-color: var(--button-background-checked);
   padding: 1.5rem 2.5rem;
   font-weight: 700;
 }
@@ -307,7 +319,7 @@ button.theme:hover:not(.checked) {
 
 .tutorial {
   background-color: var(--accent-1);
-  color: white;
+  color: var(--ui-text);
   margin: 1rem;
   border-radius: 1rem;
   padding: 1rem 2rem;
@@ -381,6 +393,7 @@ button.theme:hover:not(.checked) {
   border-radius: 2rem;
   border: 1rem solid var(--button-background);
   font-size: 4.5rem;
+  color: var(--button-text);
 }
 
 .currentPlayerInfo {
@@ -397,7 +410,6 @@ button.theme:hover:not(.checked) {
 
 .currentPlayerNameText {
   grid-column: 1/3;
-  color: white;
   font-size: 3rem;
 }
 
@@ -434,7 +446,7 @@ button.theme:hover:not(.checked) {
 }
 
 .transitionTitle {
-  color: white;
+  color: var(--ui-text);
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: -1rem;
@@ -476,6 +488,7 @@ button.theme:hover:not(.checked) {
   border-radius: 2rem;
   border: 1rem solid black;
   align-items: center;
+  color: var(--button-text);
 }
 
 .result.icon {
@@ -487,24 +500,28 @@ button.theme:hover:not(.checked) {
   grid-column: 2;
   grid-row: 1;
   font-size: 4rem;
+  color: inherit;
 }
 
 .playerScore {
   grid-column: 2;
   grid-row: 2;
   font-size: 2.5rem;
+  color: inherit;
 }
 
 .playerTime {
   grid-column: 2;
   grid-row: 3;
   font-size: 2.5rem;
+  color: inherit;
 }
 
 .playerWins {
   grid-column: 2;
   grid-row: 4;
   font-size: 2.5rem;
+  color: inherit;
 }
 
 .winner {
