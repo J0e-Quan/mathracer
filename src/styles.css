@@ -196,7 +196,9 @@ header {
   gap: 1rem;
 }
 
-.tutorial-button, .settings-button, .close-settings {
+.tutorial-button,
+.settings-button,
+.close-settings {
   border-radius: 2rem;
   padding: 1rem 2rem;
   font-size: 2rem;
