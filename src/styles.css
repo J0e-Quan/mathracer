@@ -292,10 +292,22 @@ h3.title {
 
 button.questions,
 button.players,
-button.theme {
+button.theme,
+.theme-toggle {
   padding: 1rem 2rem;
   font-size: 2rem;
   border: 0.5rem solid var(--button-border);
+  background-color: var(--button-background);
+}
+
+.theme-toggle {
+  outline: none;
+  border-radius: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.theme-toggle:hover option {
   background-color: var(--button-background);
 }
 
@@ -329,7 +341,8 @@ button.theme {
 .submit-name:hover,
 button.questions:hover:not(.checked),
 button.players:hover:not(.checked),
-button.theme:hover:not(.checked) {
+button.theme:hover:not(.checked),
+.theme-toggle:hover {
   background-color: var(--button-background-hover);
 }
 
