@@ -43,7 +43,7 @@ export function updatePlayerForm(totalPlayers) {
       player.classList.add('four')
       playerIcon.classList.add('four')
       playerName.classList.add('four')
-      playerName.placeholder = "Player 4's name"      
+      playerName.placeholder = "Player 4's name"
     }
     players.appendChild(player)
   }

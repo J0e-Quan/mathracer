@@ -194,6 +194,8 @@ header {
   width: 20rem;
   border: 0.5rem solid var(--button-border);
   font-size: 2rem;
+  background-color: var(--button-background);
+  color: var(--button-text); 
 }
 
 .row-2 {
