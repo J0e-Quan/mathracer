@@ -49,13 +49,6 @@ export function updatePlayerForm(totalPlayers) {
   }
 }
 
-export function removePlayerForm() {
-  const player3 = document.querySelector('.player.three')
-  if (player3 !== null) {
-    player3.remove()
-  }
-}
-
 export function updateTheme(theme) {
   const root = document.documentElement
   // className is used instead of classList because it overwrites all classes

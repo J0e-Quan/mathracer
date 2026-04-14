@@ -62,16 +62,22 @@ function hideSettings() {
 }
 
 function initPlayer(numberOfPlayers) {
-  const twoPlayers = document.querySelector('.two.players')
-  const threePlayers = document.querySelector('.three.players')
+  const players = document.querySelectorAll('button.players')
+  players.forEach((player) => {
+    player.classList.remove('checked')
+  })
   if (numberOfPlayers === 2) {
+    const twoPlayers = document.querySelector('.two.players')
     twoPlayers.classList.add('checked')
-    threePlayers.classList.remove('checked')
     updatePlayerForm(2)
   } else if (numberOfPlayers === 3) {
+    const threePlayers = document.querySelector('.three.players')
     threePlayers.classList.add('checked')
-    twoPlayers.classList.remove('checked')
     updatePlayerForm(3)
+  } else if (numberOfPlayers === 4) {
+    const fourPlayers = document.querySelector('.four.players')
+    fourPlayers.classList.add('checked')
+    updatePlayerForm(4)
   }
 }
 
