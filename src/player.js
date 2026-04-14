@@ -61,7 +61,6 @@ export function determineWinner() {
     const bestTime = tiedScore[0].roundTime
     tiedScore.forEach((player) => {
       if (player.roundTime === bestTime) {
-        console.log('win by scoring fastest and highest: ' + player.playerNumber)
         player.incrementScore()
         winner.push(player.playerNumber)
       }

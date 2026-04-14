@@ -297,7 +297,7 @@ function updatePlayerWins() {
   const player1Wins = document.querySelector('.one .playerWins')
   const player2Wins = document.querySelector('.two .playerWins')
   const player3Wins = document.querySelector('.three .playerWins')
-  const player4Wins = document.querySelector('.four.playerWins')
+  const player4Wins = document.querySelector('.four .playerWins')
   player1Wins.textContent = 'Rounds won: ' + allPlayers[0].score
   player2Wins.textContent = 'Rounds won: ' + allPlayers[1].score
   if (player3Wins !== null) {
