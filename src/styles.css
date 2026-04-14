@@ -304,7 +304,7 @@ button.players,
   border-radius: 2rem;
   margin-top: auto;
   margin-bottom: auto;
-  color: var(--button-text)
+  color: var(--button-text);
 }
 
 .theme-toggle:hover option {
