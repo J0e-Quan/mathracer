@@ -227,7 +227,7 @@ header {
   padding: 1rem;
   border-radius: 2rem;
   background-color: var(--accent-1);
-  max-width: 80vw;
+  max-width: 90vw;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -292,7 +292,6 @@ h3.title {
 
 button.questions,
 button.players,
-button.theme,
 .theme-toggle {
   padding: 1rem 2rem;
   font-size: 2rem;
@@ -305,6 +304,7 @@ button.theme,
   border-radius: 2rem;
   margin-top: auto;
   margin-bottom: auto;
+  color: var(--button-text)
 }
 
 .theme-toggle:hover option {
@@ -312,24 +312,21 @@ button.theme,
 }
 
 .five.questions,
-.two.players,
-.light.theme {
+.two.players {
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
   margin-right: -0.5rem;
 }
 
 .ten.questions,
-.four.players,
-.dark.theme {
+.four.players {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   margin-left: -0.5rem;
 }
 
 .questions.checked,
-.players.checked,
-.theme.checked {
+.players.checked {
   background-color: var(--button-background-checked);
   padding: 1.5rem 2.5rem;
   font-weight: 700;
@@ -341,7 +338,6 @@ button.theme,
 .submit-name:hover,
 button.questions:hover:not(.checked),
 button.players:hover:not(.checked),
-button.theme:hover:not(.checked),
 .theme-toggle:hover {
   background-color: var(--button-background-hover);
 }

@@ -134,28 +134,20 @@ function toggleQuestions(btn) {
 }
 
 function initThemes(theme) {
-  const themes = document.querySelectorAll('button.theme')
-  themes.forEach((theme) => {
-    theme.classList.remove('checked')
-  })
+  const themes = document.querySelectorAll('option.theme')
   const targetClassList = theme + ' theme'
   for (const theme of themes) {
     if (theme.classList.value === targetClassList) {
-      theme.classList.add('checked')
-      updateTheme(theme.textContent.toLowerCase())
+      theme.selected = true
+      updateTheme(theme.value)
     }
   }
 }
 
 function toggleThemes(btn) {
   const targetBtn = btn.target
-  const themes = document.querySelectorAll('button.theme')
-  themes.forEach((theme) => {
-    theme.classList.remove('checked')
-  })
-  targetBtn.classList.add('checked')
-  updateTheme(targetBtn.textContent.toLowerCase())
-  updateStorage('theme', targetBtn.textContent.toLowerCase())
+  updateTheme(targetBtn.value)
+  updateStorage('theme', targetBtn.value)
 }
 
 function beginGame() {
