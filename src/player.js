@@ -26,7 +26,7 @@ export function setPlayerNames() {
   if (player4NameInput !== '' && player4NameInput !== null) {
     let player4name = player4NameInput.value
     if (player4name === '' || player4name === null) {
-      player4name = 'Player 3'
+      player4name = 'Player 4'
     }
     const player4 = createPlayer(player4name, 4)
     allPlayers.push(player4)
@@ -40,8 +40,8 @@ export function determineWinner() {
     return b.roundScore - a.roundScore
   })
   if (checkTie(scoreArr, 'roundScore') === false) {
-    winner.push(scoreArr[0].playerNumber)
     scoreArr[0].incrementScore()
+    winner.push(scoreArr[0].playerNumber)
   } else {
     // if there are identical scores, get best scoring player first to prioritise score
     const bestScore = scoreArr[0].roundScore
@@ -62,8 +62,8 @@ export function determineWinner() {
     tiedScore.forEach((player) => {
       if (player.roundTime === bestTime) {
         console.log('win by scoring fastest and highest: ' + player.playerNumber)
-        winner.push(player.playerNumber)
         player.incrementScore()
+        winner.push(player.playerNumber)
       }
     })
   }

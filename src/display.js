@@ -127,6 +127,8 @@ export function newGame(currentPlayerIndex, totalQuestions) {
     currentPlayerIcon.classList.add('two')
   } else if (currentPlayerIndex === 2) {
     currentPlayerIcon.classList.add('three')
+  } else if (currentPlayerIndex === 3) {
+    currentPlayerIcon.classList.add('four')
   }
   currentPlayerInfo.appendChild(currentPlayerIcon)
   game.appendChild(currentPlayerInfo)
@@ -172,6 +174,8 @@ export function transition(currentPlayerIndex) {
     transitionPlayerIcon.classList.add('player', 'two', 'icon')
   } else if (currentPlayerIndex === 2) {
     transitionPlayerIcon.classList.add('player', 'three', 'icon')
+  } else if (currentPlayerIndex === 3) {
+    transitionPlayerIcon.classList.add('player', 'four', 'icon')
   }
   transitionPlayerIcon.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
@@ -228,6 +232,9 @@ export function showResult() {
     } else if (i === 2) {
       playerResults.classList.add('three')
       playerIcon.classList.add('three')
+    } else if (i === 3) {
+      playerResults.classList.add('four')
+      playerIcon.classList.add('four')
     }
     playerName.textContent = currentPlayer.name
     playerScore.textContent = 'Correct answers: ' + currentPlayer.roundScore
@@ -265,6 +272,11 @@ function showWinner(winner) {
       winResults.classList.add('winner')
       updateInstruction(allPlayers[2].name + ' wins this round!')
       updatePlayerWins()
+    } else if (num === 4) {
+      const winResults = document.querySelector('.playerResults.four')
+      winResults.classList.add('winner')
+      updateInstruction(allPlayers[3].name + ' wins this round!')
+      updatePlayerWins()
     }
     if (winner.length > 1) {
       console.log('tie!!')
@@ -285,10 +297,14 @@ function updatePlayerWins() {
   const player1Wins = document.querySelector('.one .playerWins')
   const player2Wins = document.querySelector('.two .playerWins')
   const player3Wins = document.querySelector('.three .playerWins')
+  const player4Wins = document.querySelector('.four.playerWins')
   player1Wins.textContent = 'Rounds won: ' + allPlayers[0].score
   player2Wins.textContent = 'Rounds won: ' + allPlayers[1].score
   if (player3Wins !== null) {
     player3Wins.textContent = 'Rounds won: ' + allPlayers[2].score
+  }
+  if (player4Wins !== null) {
+    player4Wins.textContent = 'Rounds won: ' + allPlayers[3].score
   }
 }
 
