@@ -16,9 +16,8 @@ import {
   newGame,
   removeResults,
   hideInitial,
-  addPlayerForm,
-  removePlayerForm,
-  updateTheme
+  updateTheme,
+  updatePlayerForm
 } from './display.js'
 const tutorialCloseBtn = document.querySelector('.close-tutorial')
 const tutorialBtn = document.querySelector('.tutorial-button')
@@ -68,11 +67,11 @@ function initPlayer(numberOfPlayers) {
   if (numberOfPlayers === 2) {
     twoPlayers.classList.add('checked')
     threePlayers.classList.remove('checked')
-    removePlayerForm()
+    updatePlayerForm(2)
   } else if (numberOfPlayers === 3) {
     threePlayers.classList.add('checked')
     twoPlayers.classList.remove('checked')
-    addPlayerForm(3)
+    updatePlayerForm(3)
   }
 }
 
@@ -83,14 +82,16 @@ function togglePlayer(btn) {
     player.classList.remove('checked')
   })
   targetBtn.classList.add('checked')
-  if (targetBtn.classList.contains('two') && !targetBtn.classList.contains('checked')) {
-    removePlayerForm()
+  if (targetBtn.classList.contains('two')) {
+    console.log('2p')
+    updatePlayerForm(2)
     updateStorage('numberOfPlayers', 2)
-  } else if (targetBtn.classList.contains('three') && !targetBtn.classList.contains('checked')) {
-    addPlayerForm(3)
+  } else if (targetBtn.classList.contains('three')) {
+    console.log('3p')
+    updatePlayerForm(3)
     updateStorage('numberOfPlayers', 3)
-  } else if (targetBtn.classList.contains('four') && !targetBtn.classList.contains('checked')) {
-    addPlayerForm(4)
+  } else if (targetBtn.classList.contains('four')) {
+    updatePlayerForm(4)
     updateStorage('numberOfPlayers', 4)
   }
 }

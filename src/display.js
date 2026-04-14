@@ -10,9 +10,22 @@ import { determineWinner, allPlayers } from './player.js'
 const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
 
-export function addPlayerForm(totalPlayers) {
+export function updatePlayerForm(totalPlayers) {
+  console.log('updating player form')
   const players = document.querySelector('.player')
-  for (let i = 2; i <= totalPlayers; i++) {
+  let currentTotal = players.childElementCount
+  console.log(totalPlayers)
+  console.log(currentTotal)
+  while (currentTotal > totalPlayers) {
+    const lastPlayer = players.lastElementChild
+    lastPlayer.remove()
+    currentTotal = players.childElementCount
+  }
+  if (currentTotal === totalPlayers) {
+    // if number of players is correct, end early (skip adding more players)
+    return
+  }
+  for (let i = currentTotal; i < totalPlayers; i++) {
     const playerTemplate = document.querySelector('.player.two')
     const player = playerTemplate.cloneNode(true)
     player.classList.remove('two')
