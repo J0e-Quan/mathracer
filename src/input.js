@@ -89,11 +89,9 @@ function togglePlayer(btn) {
   })
   targetBtn.classList.add('checked')
   if (targetBtn.classList.contains('two')) {
-    console.log('2p')
     updatePlayerForm(2)
     updateStorage('numberOfPlayers', 2)
   } else if (targetBtn.classList.contains('three')) {
-    console.log('3p')
     updatePlayerForm(3)
     updateStorage('numberOfPlayers', 3)
   } else if (targetBtn.classList.contains('four')) {

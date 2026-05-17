@@ -11,11 +11,8 @@ const tutorialBtn = document.querySelector('.tutorial-button')
 const initial = document.querySelector('.initial')
 
 export function updatePlayerForm(totalPlayers) {
-  console.log('updating player form')
   const players = document.querySelector('.player')
   let currentTotal = players.childElementCount
-  console.log(totalPlayers)
-  console.log(currentTotal)
   while (currentTotal > totalPlayers) {
     const lastPlayer = players.lastElementChild
     lastPlayer.remove()
@@ -272,7 +269,6 @@ function showWinner(winner) {
       updatePlayerWins()
     }
     if (winner.length > 1) {
-      console.log('tie!!')
       updateInstruction('We have a tie!')
       updatePlayerWins()
     }
