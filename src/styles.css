@@ -586,13 +586,17 @@ button.players:hover:not(.checked),
 
 /* MEDIA QUERIES BELOW */
 @media (max-width: 600px) {
+  header {
+    padding: 1rem;
+  }
   header img {
     height: auto;
     width: 80vw;
   }
   .instruction {
-  margin: 1rem 0;
-  font-size: 1.5rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    padding: 1rem;
   }
   .initial {
     padding: 2rem 1rem;
@@ -638,6 +642,9 @@ button.players:hover:not(.checked),
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+  .transitionTitle {
+    font-size: 2rem;
   }
 }
 /* MEDIA QUERIES ABOVE */
