@@ -18,6 +18,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 - Number of players and questions per round can be customised
 - Tutorial menu helps to familiarize players with the game
 - Large-sized UI improves visibility
+- Responsive design makes the game mobile-friendly
 - Various themes alter the look and feel of the game
 - The game features keyboard support
 
