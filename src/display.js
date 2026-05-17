@@ -194,14 +194,14 @@ export function showResult() {
   for (let i = 0; i < allPlayers.length; i++) {
     const playerResults = document.createElement('div')
     playerResults.classList.add('playerResults')
-    const playerName = document.createElement('h2')
-    playerName.classList.add('playerName')
-    playerResults.appendChild(playerName)
     const playerIcon = document.createElement('div')
     playerIcon.classList.add('result', 'icon')
     playerIcon.innerHTML =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 8 8" width="15rem"><path d="M0 6 6 6C6 5 6 4 5 4L3 4C4 4 5 3 5 2 5 1 4 0 3 0 2 0 1 1 1 2 1 3 2 4 3 4L1 4C0 4 0 5 0 6 Z" stroke="#a7a7a7" stroke-width="0"/></svg>'
     playerResults.appendChild(playerIcon)
+    const playerName = document.createElement('h2')
+    playerName.classList.add('playerName')
+    playerResults.appendChild(playerName)
     const playerScore = document.createElement('h3')
     playerScore.classList.add('playerScore')
     playerResults.appendChild(playerScore)
