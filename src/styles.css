@@ -634,16 +634,20 @@ button.players:hover:not(.checked),
   .all-settings .title {
     font-size: 2rem;
   }
-  button.questions, button.players, .theme-toggle {
+  button.questions,
+  button.players,
+  .theme-toggle {
     padding: 1rem;
   }
-  .five.questions, .ten.questions {
+  .five.questions,
+  .ten.questions {
     border-radius: 2rem;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
-  .transitionCard, .resultsCard {
+  .transitionCard,
+  .resultsCard {
     margin: 1rem;
   }
   .transitionTitle {
@@ -664,8 +668,48 @@ button.players:hover:not(.checked),
     font-size: 2.5rem;
     text-align: center;
   }
-  .playerScore, .playerTime, .playerWins {
+  .playerScore,
+  .playerTime,
+  .playerWins {
     font-size: 1.5rem;
+  }
+  .game {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .questionBox {
+    font-size: 3rem;
+    border-width: 0.5rem;
+  }
+  .numpad {
+    margin-top: -1rem;
+    align-self: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+  .numpadBtn {
+    width: 96px;
+    height: 96px;
+    border-width: 6px;
+  }
+  .numpadBtn img {
+    width: 90px;
+    height: 90px;
+  }
+  .currentPlayerInfo {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1rem;
+  }
+  .scoreGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .currentPlayerNameText {
+    font-size: 2.5rem;
+    text-align: center;
   }
 }
 /* MEDIA QUERIES ABOVE */

@@ -62,6 +62,10 @@ export function newGame(currentPlayerIndex, totalQuestions) {
   const content = document.querySelector('.content')
   const game = document.createElement('div')
   game.classList.add('game')
+  const questionBox = document.createElement('div')
+  questionBox.classList.add('questionBox')
+  questionBox.textContent = '1 + 1 = 11'
+  game.appendChild(questionBox)
   const numpad = document.createElement('div')
   numpad.classList.add('numpad')
   const iconArr = [
@@ -97,10 +101,6 @@ export function newGame(currentPlayerIndex, totalQuestions) {
     numpad.appendChild(numpadBtn)
   })
   game.appendChild(numpad)
-  const questionBox = document.createElement('div')
-  questionBox.classList.add('questionBox')
-  questionBox.textContent = '1 + 1 = 11'
-  game.appendChild(questionBox)
   const currentPlayerInfo = document.createElement('div')
   currentPlayerInfo.classList.add('currentPlayerInfo')
   const currentPlayerNameText = document.createElement('h2')
