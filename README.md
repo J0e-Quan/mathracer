@@ -34,7 +34,7 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 ![picture showing gameplay with 5 questions per round](./readme-assets/gameplay-5q.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
 ![picture showing the settings menu with a dark theme applied](./readme-assets/settings.jpeg)
-![picture showing a narrower version of the game layout](./readme-assets/narrow.jpeg)
+![picture showing the mobile version of the game layout](./readme-assets/mobile.jpeg)
 
 ## Getting started:
 
