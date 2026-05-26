@@ -77,6 +77,7 @@ button {
   --button-background-hover: rgb(241, 241, 241);
   --button-text: rgb(0, 0, 0);
   --ui-text: rgb(255, 255, 255);
+  --numpad-icon-colour: filter: invert(0%) sepia(42%) saturate(0%) hue-rotate(121deg) brightness(99%) contrast(104%);
 }
 
 :root.dark {
@@ -88,6 +89,7 @@ button {
   --button-background-hover: rgb(60, 60, 60);
   --button-text: rgb(255, 255, 255);
   --ui-text: rgb(255, 255, 255);
+  --numpad-icon-colour: invert(100%) sepia(0%) saturate(7479%) hue-rotate(47deg) brightness(100%) contrast(106%);
 }
 
 :root.light {
@@ -99,6 +101,7 @@ button {
   --button-background-hover: rgb(180, 180, 180);
   --button-text: rgb(0, 0, 0);
   --ui-text: rgb(0, 0, 0);
+  --numpad-icon-colour: filter: invert(0%) sepia(42%) saturate(0%) hue-rotate(121deg) brightness(99%) contrast(104%);
 }
 
 /*      ^^^^^^^^^^
@@ -410,17 +413,21 @@ button.players:hover:not(.checked),
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.5rem solid var(--button-background);
+  background-color: var(--button-background);
+  border: 0.5rem solid var(--button-border);
 }
 
 .numpadBtn:hover {
-  filter: brightness(1.5);
+  background-color: var(--button-background-hover);
 }
 
 .numpadBtn-icon {
   width: 7.5rem;
   height: 7.5rem;
   pointer-events: none;
+  /* icon was not inserted inline, so filter must be used to change colour instead of fill/stroke */
+  /* RESOURCE FOR GENERATING FILTER: https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: var(--numpad-icon-colour);
 }
 
 .questionBox {
@@ -692,10 +699,6 @@ button.players:hover:not(.checked),
     width: 96px;
     height: 96px;
     border-width: 6px;
-  }
-  .numpadBtn img {
-    width: 90px;
-    height: 90px;
   }
   .currentPlayerInfo {
     display: flex;
