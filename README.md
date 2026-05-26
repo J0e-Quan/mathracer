@@ -1,6 +1,6 @@
 # MathRacer
 
-Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where two players compete to answer several simple maths questions in the shortest time possible!
+Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where 2 - 4 players compete to answer several simple maths questions in the shortest time possible!
 
 Live demo link: https://j0e-quan.github.io/mathracer/
 
@@ -24,17 +24,18 @@ Live demo link: https://j0e-quan.github.io/mathracer/
 
 ## Credits:
 
-- Logo and numpad icons were drawn by me using Adobe Fresco
+- Logo was drawn by me using Adobe Fresco
+- Numpad numbers and icons were drawn by me using Affinity
 - Player icons were made by me using [Yann Armelin's SVG path editor](https://yqnn.github.io/svg-path-editor/)
 
 ## Gallery:
 
 ![picture showing initial state of the game](./readme-assets/initial.jpeg)
-![picture showing gameplay with 10 questions per round](./readme-assets/gameplay.jpeg)
+![picture showing gameplay with 10 questions per round](./readme-assets/gameplay-10q.jpeg)
 ![picture showing gameplay with 5 questions per round](./readme-assets/gameplay-5q.jpeg)
 ![picture showing results](./readme-assets/result.jpeg)
 ![picture showing the settings menu with a dark theme applied](./readme-assets/settings.jpeg)
-![picture showing the mobile version of the game layout](./readme-assets/mobile.jpeg)
+![picture showing the mobile version of the game layout with a light theme applied](./readme-assets/mobile.jpeg)
 
 ## Getting started:
 
