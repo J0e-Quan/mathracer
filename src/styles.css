@@ -116,7 +116,8 @@ button {
   --button-background-hover: rgb(60, 60, 60);
   --button-text: rgb(0, 255, 50);
   --ui-text: rgb(0, 255, 50);
-  --numpad-icon-colour: invert(58%) sepia(36%) saturate(5985%) hue-rotate(94deg) brightness(139%) contrast(101%);
+  --numpad-icon-colour: invert(58%) sepia(36%) saturate(5985%) hue-rotate(94deg) brightness(139%)
+    contrast(101%);
 }
 
 /*      ^^^^^^^^^^
@@ -714,6 +715,10 @@ button.players:hover:not(.checked),
     width: 96px;
     height: 96px;
     border-width: 6px;
+  }
+  .numpadBtn-icon {
+    width: 84px;
+    height: 84px;
   }
   .currentPlayerInfo {
     display: flex;
