@@ -2,7 +2,7 @@
 
 Inspired by [TypeRacer](https://play.typeracer.com/), MathRacer is a fast-paced game where 2 - 4 players compete to answer several simple maths questions in the shortest time possible!
 
-Live demo link: https://j0e-quan.github.io/mathracer/
+Live demo link: https://play-mathracer.onrender.com/
 
 ## Technologies used:
 
