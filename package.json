@@ -7,8 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --config webpack.dev.cjs",
-    "build": "webpack --config webpack.prod.cjs",
-    "deploy": "npm run cleanup && npm run build && gh-pages -d dist",
+    "build": "npm run cleanup && webpack --config webpack.prod.cjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
